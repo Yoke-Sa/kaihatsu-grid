@@ -1,140 +1,234 @@
-/**************************************************** Welcome Page ****************************************************/
-
-/* カスタムプロパティ */
+/************************** Welcome Page **************************/
 .welcome {
-  --grid-gap: 20px
-}
+  /* 配置 */
+  position: absolute;
+  inset: 0;
 
-/*======================== コンテナ ========================*/
-.welcome {
-  display: grid;      /* グリッドレイアウトを使用 */
-  gap: var(--grid-gap);
+  /* 幅、高さ */
+  width: 100vw;
+  height: auto;
 
-  margin: 0 auto;     /* 外側余白 */
+  /* 余白 */
+  margin: 0 auto;
+  padding: 0;
 
-  grid-template-rows: 6vh auto 4vh;    /* y方向 */
-  grid-template-columns: 15vw calc(70vw - (var(--grid-gap)*2)) 15vw;  /* x方向 */
-  grid-template-areas:    /* レイアウト */
-    "header header header"
-    "left   main   right "
-    "footer footer footer";
-
+  /* 背景 */
   background: var(--page-color);
   background: var(--webkit-page-color);
+
+  /* 表示 */
+  overflow: hidden scroll;
 }
-
-/*======================== ヘッダー ========================*/
+  
+/******************** header ********************/
 .welcome header {
-  grid-area: header;    /* グリッドレイアウト上の配置 */
+  /* 配置 */
+  position: relative;
+  inset: inherit;
 
+  /* 幅、高さ */
+  width: inherit;
+  height: 6vh;
+
+  /* 余白 */
+  margin: inherit;
+
+  /* 背景 */
   background: var(--header-color);
   background: var(--webkit-header-color);
 }
 .welcome header h1 {
+  /* 配置 */
   text-align: center;
+  inset: inherit;
 
+  /* 余白 */
   margin: inherit;
 
+  /* フォント */
   font-size: 4vh;
+  color: white;
 }
 
-/*======================== メイン ========================*/
+/******************** main ********************/
 .welcome main {
-  grid-area: main;      /* グリッドレイアウト上の配置 */
+  /* 配置 */
+  position: relative;
+  inset: 0;
+
+  /* 幅、高さ */
+  width: inherit;
+  height: inherit;
+
+  /* 余白 */
+  margin: inherit;
 }
 .welcome ul {
+  /* 配置 */
   display: flex;
-  justify-content: space-evenly;
   text-align: center;
 
+  /* 幅、高さ */
+  width: 80vw;
+  height: inherit;
+
+  /* 余白 */
+  margin: 5vh 0 0 15vw;
+  padding: 0;
+
+  /* リストスタイル */
   list-style: none;
 }
 .welcome li {
-  width: 20vw;
+  /* 幅、高さ */
+  width: 30vw;
+  height: inherit;
 
-  margin: 2vh 0 0 0;
-  padding: 0 auto;
+  /* 余白 */
+  margin: 0 10vw 0 0;
+  padding: inherit;
 
+  /* 背景 */
   background-color: rgba(0, 0, 0, 0.219);
 
+  /* 枠線 */
   border: solid .45rem blue;
   border-top: none;
   border-radius: 1rem;
   box-sizing: border-box;
 }
 .welcome li h1{
+  /* 配置 */
+  position: relative;
+  inset: 0;
+
+  /* 幅、高さ */
+  width: auto;
+  height: inherit;
   min-width: 10vw;
 
-  margin: 0 -.45rem 0 -.45rem;
+  /* 余白 */
+  margin: 0 0 0 -.45rem;
+  padding: inherit;
   
+  /* 背景 */
   background: linear-gradient(to right, rgb(127, 215, 250), white);
   background: -webkit-linear-gradient(0deg, rgb(127, 215, 250), white);
 
+  /* フォント */
   font-size: 2vh;
   line-height: normal;
 
+  /* 枠線 */
   border-left: solid 1rem rgb(132, 0, 240);
-  border-radius: 5px;
 }
 .welcome li p {
+  /* 配置 */
+  position: relative;
+
+  /* 余白 */
   margin: 1vh 0 0 0;
   padding: .2vh 0 1vh 0;
 
+  /* フォント */
   font-size: 1vw;
   line-height: normal;
 }
 .welcome .button {
+  /* 配置 */
+  position: relative;
   text-align: center;
 
+  /* 幅、高さ */
+  width: auto;
   height: 3.5vh;
+  min-width: 5vw;
 
+  /* 余白 */
+  margin: 0 auto 1vh auto;
+  padding: 0 1vw;
+
+  /* フォント */
   font-size: 1vw;
   line-height: 1.5vh;
 }
 .welcome .contents {
-  margin-top: 5vh;
+  /* 配置 */
+  position: relative;
+  top: 5vh;
+
+  /* 幅、高さ */
+  width: auto;
+  height: inherit;
+  min-width: 70vw;
   
+  /* 余白 */
+  margin: 2vh 15vw 10vh 15vw;
+  padding: 1vh 0;
+
+  /* 背景 */
   background-color: rgba(181, 171, 253, 0.473);
 
+  /* 枠線 */
   border: solid 5px rgb(85, 18, 241);
   border-radius: 3rem;
 
+  /* 制限 */
   overflow: hidden;
 }
 .welcome .contents h1 {
+  /* 幅、高さ */
+  width: auto;
+  height: 3.5vh;
+  min-width: 10vw;
   text-align: center;
 
-  margin: 3vh 20vw 1vh 20vw;
+  /* 余白 */
+  margin: 0 10vw;
+  padding: .2vh auto;
 
+  /* 背景 */
   background-color: rgba(255, 255, 255, 0.781);
 
+  /* フォント */
   font-size: 2.5vh;
 
+  /* 枠線 */
   border-left: solid 1rem rgb(255, 230, 0);
   border-right: solid 1rem rgb(255, 230, 0);
 }
 .welcome .contents h2 {
+  /* 配置 */
   text-align: left;
 
+  /* 余白 */
   margin: 3vh 2vw 1vh 2vw;
-  padding: 0 2vw;
+  padding: .2vh 0 .2vh 2vw;
 
+  /* 背景 */
   background-color: rgba(52, 182, 52, 0.562);
 
+  /* フォント */
   font-size: 1vw;
   color: white;
 
+  /* 枠線 */
   outline: dashed .2vw green;
 }
 .welcome .contents p {
+  /* 余白 */
   margin: 0 2vw;
   padding: auto;
 
+  /* フォント */
   font-size: 1vw;
 }
 .welcome .dest-img {
+  /* 配置 */
   display: inline-block;
+  inset: 0;
 
+  /* 幅、高さ */
   width: 1280px;
   height: 720px;
 
@@ -149,58 +243,52 @@
   transform: scale(var(--dest-img-scale, auto));
 }
 
-/*======================== フッター ========================*/
+/******************** footer ********************/
 .welcome footer {
-  grid-area: footer;    /* グリッドレイアウト上の配置 */
+  /* 配置 */
+  position: relative;
+  bottom: 0;
 
+  /* 幅、高さ */
+  width: 100vw;
+  height: 4.5vh;
+
+  /* 余白 */
+  margin: inherit;
+  padding: 0;
+
+  /* 背景 */
   background: var(--footer-color);
   background: var(--webkit-footer-color);
 }
-.welcome footer h1 {
-  text-align: right;
 
-  margin: inherit;
-  padding: .5vh 0 0 0;
-
-  font-size: 2vh;
-  color: white;
-}
-
-/*======================== サイド ========================*/
-.welcome .left {
-  grid-area: left;    /* グリッドレイアウト上の配置 */
-}
-.welcome .right {
-  grid-area: right;    /* グリッドレイアウト上の配置 */
-}
-
-/*======================== お試しレスポンシブ ========================*/
+/******************** お試しレスポンシブ ********************/
 /* PC */
 @media screen {
   .welcome {
-    --dest-img-margin: -1.7rem 0 -2rem -.5rem;
-    --dest-img-scale: .9;
+    --dest-img-margin: -6rem 0 -6.5rem -1rem;
+    --dest-img-scale: .7;
   }
 }
 /* タブレット(大) */
 @media screen and (max-width:1024px) {
   .welcome {
-    --dest-img-margin: -12rem 0 -12rem -21.6rem;
+    --dest-img-margin: -12rem 0 -12rem -21.5rem;
     --dest-img-scale: .45;
   }
 }
 /* タブレット(中) */
 @media screen and (max-width:820px) {
   .welcome {
-    --dest-img-margin: -13rem 0 -13rem -23.6rem;
+    --dest-img-margin: -13rem 0 -13rem -23.5rem;
     --dest-img-scale: .4;
   }
 }
 /* タブレット(小) */
 @media screen and (max-width: 768px) {
   .welcome {
-    --dest-img-margin: -13.5rem 0 -14rem -24.75rem;
-    --dest-img-scale: .37;
+    --dest-img-margin: -13.5rem 0 -14rem -24.3rem;
+    --dest-img-scale: .38;
   }
 }
 /* タブレット(横長 大) */
@@ -213,49 +301,49 @@
 /* タブレット(横長 小) */
 @media screen and (min-width: 768px) and (max-height: 600px) {
   .welcome {
-    --dest-img-margin: -11rem 0 -11.5rem -19.12rem;
+    --dest-img-margin: -11rem 0 -11rem -19.5rem;
     --dest-img-scale: .5;
   }
 }
 /* スマホ(極大) */
 @media screen and (max-width: 540px) {
   .welcome {
-    --dest-img-margin: -16rem 0 -17rem -29.75rem;
+    --dest-img-margin: -16rem 0 -17rem -29.2rem;
     --dest-img-scale: .25;
   }
 }
 /* スマホ(大) */
 @media screen and (max-width: 420px) {
   .welcome {
-    --dest-img-margin: -18.2rem 0 -18.5rem -32.55rem;
-    --dest-img-scale: .18;
+    --dest-img-margin: -17.5rem 0 -18rem -31.8rem;
+    --dest-img-scale: .2;
   }
 }
 /* スマホ(中) */
 @media screen and (max-width: 400px) {
   .welcome {
-    --dest-img-margin: -18.5rem 0 -18.8rem -33.01rem;
-    --dest-img-scale: .17;
+    --dest-img-margin: -18rem 0 -18.5rem -32.2rem;
+    --dest-img-scale: .175;
   }
 }
 /* スマホ(小) */
 @media screen and (max-width: 375px) {
   .welcome {
-    --dest-img-margin: -18.6rem 0 -19.1rem -33.35rem;
-    --dest-img-scale: .16;
+    --dest-img-margin: -18rem 0 -18.5rem -32.5rem;
+    --dest-img-scale: .175;
   }
 }
 /* スマホ(極小) */
 @media screen and (max-width: 360px) {
   .welcome {
-    --dest-img-margin: -18.8rem 0 -19.2rem -33.7rem;
-    --dest-img-scale: .155;
+    --dest-img-margin: -18rem 0 -18.5rem -32.8rem;
+    --dest-img-scale: .175;
   }
 }
 /* スマホ(超極小) */
 @media screen and (max-width: 320px) {
   .welcome {
-    --dest-img-margin: -19.9rem 0 -20.3rem -35.45rem;
-    --dest-img-scale: .11;
+    --dest-img-margin: -19rem 0 -19rem -34.55rem;
+    --dest-img-scale: .14;
   }
 }

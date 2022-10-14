@@ -1,10 +1,30 @@
-/**************************************************** AddRoute Page ****************************************************/
+/************************** AddRoute Page **************************/
 *, *::before {
   box-sizing: border-box;
 }
 
-/*======================== ヘッダー ========================*/
-.add-route label:not(#input) {
+/******************** header ********************/
+.add-route header {
+  /* 配置 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* 幅、高さ */
+  width: inherit;
+  height: 6vh;
+  
+  /* 余白 */
+  margin: inherit;
+  
+  /* 背景 */
+  background: var(--header-color);
+  background: var(--webkit-header-color);
+
+  /* カーソル */
+  cursor: default;
+}
+.add-route header label:not(#input) {
   /* 余白 */
   margin: 0 1rem 0 0;
   padding: var(--label-padding);
@@ -27,7 +47,7 @@
   /* アニメーション */
   transition: background-color .3s;
 }
-.add-route label:not(#input)::before {
+.add-route header label:not(#input)::before {
   /* 挿入要素 */
   content: '';
 
@@ -65,7 +85,7 @@
   font-size: var(--label-font);
   line-height: normal;
 }
-.add-route label:not(.check) {
+.add-route header label:not(.check) {
   /* 幅、高さ */
   width: var(--label-font, auto);
   height: var(--label-font, auto);
@@ -78,7 +98,7 @@
   line-height: normal;
   color: white;
 }
-.add-route input[type="text"] {
+.add-route header input[type="text"] {
   /* 配置 */
   text-align: left;
 
@@ -95,4 +115,22 @@
   font-family: serif;
   line-height: normal;
   color: black;
+}
+
+/*** カスタムプロパティ ***/
+.add-route input[type="checkbox"]:empty + label:not(#input) {
+  --label-color: rgb(9, 110, 72);
+  --label-before-color: rgb(85, 85, 85);
+}
+.add-route input[type="checkbox"]:empty + label:not(#input):hover {
+  --label-color: rgb(6, 70, 45);
+  --label-before-color: rgb(46, 46, 46);
+}
+.add-route input[type="checkbox"]:checked + label:not(#input) {
+  --label-color: rgb(168, 14, 14);
+  --label-before-color: rgb(9, 175, 36);
+}
+.add-route input[type="checkbox"]:checked + label:not(#input):hover {
+  --label-color: rgb(87, 8, 8);
+  --label-before-color: rgb(4, 87, 18);
 }

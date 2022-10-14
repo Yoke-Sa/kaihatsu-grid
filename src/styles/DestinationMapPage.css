@@ -1,19 +1,27 @@
-/**************************************************** Destination Page ****************************************************/
+/************************** DestinationMap page **************************/
 *, *::before {
   box-sizing: border-box;
 }
 
-/*======================== ヘッダー ========================*/
+/******************** header ********************/
 .dest-map header {
-  grid-area: header;    /* グリッドレイアウト上の配置 */
-
+  /* 配置 */
   display: flex;
   justify-content: center;
   align-items: center;
   
+  /* 幅、高さ */
+  width: inherit;
+  height: 6vh;
+  
+  /* 余白 */
+  margin: inherit;
+  
+  /* 背景 */
   background: var(--header-color);
   background: var(--webkit-header-color);
 
+  /* カーソル */
   cursor: default;
 }
 .dest-map header label {
@@ -72,4 +80,22 @@
   /* フォント */
   font-size: var(--label-font);
   line-height: normal;
+}
+
+/*** カスタムプロパティ ***/
+.dest-map input[type="checkbox"]:empty + label {
+  --label-color: rgb(9, 110, 72);
+  --label-before-color: rgb(85, 85, 85);
+}
+.dest-map input[type="checkbox"]:empty + label:hover {
+  --label-color: rgb(6, 70, 45);
+  --label-before-color: rgb(46, 46, 46);
+}
+.dest-map input[type="checkbox"]:checked + label {
+  --label-color: rgb(168, 14, 14);
+  --label-before-color: rgb(9, 175, 36);
+}
+.dest-map input[type="checkbox"]:checked + label:hover {
+  --label-color: rgb(87, 8, 8);
+  --label-before-color: rgb(4, 87, 18);
 }

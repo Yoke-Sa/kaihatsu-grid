@@ -16,7 +16,7 @@ const DynamicMap = dynamic(() => {
 const CarKanri = () => {
     const { page, setPage } = useContext(PageStateContext);
     return (
-        <div className="container car-manage">
+        <div className="car-manage">
             <BaseHeader>
                 <h1><span>Car Manage</span></h1>
             </BaseHeader>

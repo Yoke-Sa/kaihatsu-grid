@@ -6,7 +6,7 @@ const CarMenuPage = () => {
 
     const { page, setPage } = useContext(PageStateContext);
     return (
-        <div className="container car-menu">
+        <div className="car-menu">
             <header>
                 <h1><span>Car Menu</span></h1>
             </header>

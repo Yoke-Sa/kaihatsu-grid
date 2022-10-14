@@ -1,4 +1,24 @@
 /************************** AllCar Page **************************/
+.all-car {
+  /* 配置 */
+  position: absolute;
+  inset: 0;
+
+  /* 幅、高さ */
+  width: 100vw;
+  height: auto;
+
+  /* 余白 */
+  margin: 0 auto;
+  padding: 0;
+
+  /* 背景 */
+  background: var(--page-color);
+  background: var(--webkit-page-color);
+
+  /* 表示 */
+  overflow: hidden scroll;
+}
   
 /******************** header ********************/
 .all-car header {

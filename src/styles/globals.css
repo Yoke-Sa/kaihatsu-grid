@@ -1,35 +1,30 @@
-/* タグ指定 */
-body {
-  margin: 0;
-  padding: 0;
-}
-
-header h1 span {
-  font-size: 4vh;
-
-  background: var(--header-h1-color);
-  background: var(--webkit-header-h1-color);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* 地図コンテナ設定 */
 .leaflet-container {
+  /* 配置 */
   position: absolute;
   inset: 0;
 
+  /* 幅、高さ */
   width: inherit;
   height: 90vh;
   
+  /* カーソル */
   cursor: var(--map-cursor);
-
-  z-index: 999;
 }
 .leaflet-container:active {
   cursor: grabbing;
 }
 
+.gakubuti {
+  /* 配置 */
+  position: relative;
+
+  /* 幅、高さ */
+  width: 100vw;
+  height: 55rem;
+}
+
 .loader {
+  /* 配置 */
   position: absolute;
   inset: 0;
   display: flex;
@@ -37,47 +32,57 @@ header h1 span {
   justify-content: center;
   align-items: center;
 
-  background: rgba(255, 255, 255, .5);
+  /* 背景 */
+  background: rgba(255, 255, 255, 0.5);
 
+  /* 優先度 */
   z-index: 9999;
 }
 
 .nowlocading {
+  /* 余白 */
   margin-top: 1rem;
 
+  /* フォント */
   color: white;
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
 
-/* ボタン */
 .button {
-  margin: .5rem;
+  /* 余白 */
+  margin: 0.5rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 
+  /* 背景 */
   background-color: rgb(8, 128, 108);
   box-shadow: 0 0 20px rgb(88, 233, 173);
   
+  /* フォント */
   color: rgba(255, 255, 255);
   font-family: serif;
   font-size: 1.125rem;
   line-height: 2.5rem;
 
-  border: outset .1rem rgb(227, 225, 235);
+  /* 枠線 */
+  border: outset 0.1rem rgb(227, 225, 235);
   border-radius: 1rem;
 
+  /* アニメーション */
   transition-property: color, background-color, border, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ↓↓↓ 追加した分 ↓↓↓ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ボタンホバー時に明るくする */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ↓↓↓ 追加した分 ↓↓↓ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ホバー時 */
 .button:hover {
+  /* 背景 */
   background-color: rgb(76, 201, 178);
 
-  cursor: pointer;                        /* マウスカーソルをポインターにする */
+  /* カーソル */
+  cursor: pointer;
 }
 
 /* チェックボックス非表示 */
@@ -85,13 +90,15 @@ input[type="checkbox"] {
   display: none;
 }
 
-/*==================================== 共通設定 ====================================*/
+/* 全ページ共通 */
 :root {
-  font-family: serif;                     /* 文字の見た目 */
+  /* フォント */
+  font-family: serif;
 
-  user-select: none;                      /* ドラッグで文字選択を不可 */
-  scrollbar-width: none;                  /* スクロールバー非表示 (Firefox) */
-  -ms-overflow-style: none;               /* スクロールバー非表示 (Internet Explorer, Microsoft Edge) */
+  /* 制限 */
+  user-select: none;
+  scrollbar-width: none;      /*** Firefox ***/
+  -ms-overflow-style: none;   /*** IE, Microsoft Edge ***/
 
   /* カスタムプロパティ */
   --page-color: radial-gradient(rgb(255, 255, 255), rgb(255, 241, 195));
@@ -106,82 +113,130 @@ input[type="checkbox"] {
   --footer-color: radial-gradient(skyblue, blue);
   --webkit-footer-color: -webkit-radial-gradient(skyblue, blue);
 }
-*::-webkit-scrollbar{                     /* スクロールバー非表示 (Chrome, Safari) */
+*::-webkit-scrollbar{         /*** Chrome, Safari ***/
   display: none;
 }
 
 
 
-/*==================================== コンテナ ====================================*/
-.container {
-  position: fixed;                        /* 画面固定 */
-  display: grid;                          /* グリッドレイアウトを使用 */
+/************************** Page **************************/
+.car-menu, .dest-map, .exist-route, .add-route, .car-watch, .car-manage, .path-check, .end {
+  /* 配置 */
+  position: fixed;
+  inset: 0;
 
-  margin: 0;                              /* 要素外余白 */
-  padding: 0;                             /* 要素内余白 */
+  /* 幅、高さ */
+  width: 100vw;
+  height: 100vh;
 
-  grid-template-columns: 100vw;           /* 幅 */
-  grid-template-rows: 6vh 90vh 4vh;       /* 高さ */
-  grid-template-areas:                    /* レイアウト */
-    "header"
-    "main  "
-    "footer";
+  /* 余白 */
+  margin: 0 auto;
+  padding: 0;
 
-  background: var(--page-color);          /* 背景 */
-  background: var(--webkit-page-color);   /* 背景 (ベンダープレフィックス) */
-  
-  overflow: hidden;                       /* はみ出した要素は隠す */
+  /* 背景 */
+  background: var(--page-color);
+  background: var(--webkit-page-color);
+
+  /* 制限 */
+  overflow: hidden;
 }
 
 
 
-/*==================================== ヘッダー ====================================*/
-.map header, .car-menu header, .car-manage header, .end header {
-  grid-area: header;                      /* グリッドレイアウト上の配置 */
-
-  display: flex;                          /* flexで横並び */
-  justify-content: center;                /* 横方向中央揃え */
-  align-items: center;                    /* 縦方向中央揃え */
+/******************** header ********************/
+.car-menu header, .car-manage header, .end header {
+  /* 配置 */
+  position: inherit;
+  inset: 0;
   
-  background: var(--header-color);        /* 背景 */
-  background: var(--webkit-header-color); /* 背景 (ベンダープレフィックス) */
-
-  cursor: default;                        /* マウスカーソルをデフォルトにする */
+  /* 幅、高さ */
+  width: inherit;
+  height: 6vh;
+  
+  /* 余白 */
+  margin: inherit;
+  
+  /* 背景 */
+  background: var(--header-color);
+  background: var(--webkit-header-color);
+}
+.car-menu header h1, .car-manage header h1, .end header h1 {
+  /* 配置 */
+  text-align: center;
+  inset: 0;
+  
+  /* 余白 */
+  margin: inherit;
+  
+  /* フォント */
+  font-size: 4vh;
+}
+.exist-route header, .car-watch header, .path-check header {
+  /* 配置 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* 幅、高さ */
+  width: inherit;
+  height: 6vh;
+  
+  /* 余白 */
+  margin: inherit;
+  
+  /* 背景 */
+  background: var(--header-color);
+  background: var(--webkit-header-color);
+}
+header h1 span {
+  /* 背景 */
+  background: var(--header-h1-color);
+  background: var(--webkit-header-h1-color);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .exist-route header .button, .car-watch header .button, .path-check header .button {
-  width: auto;                            /* 文字数に応じて幅可変 */
-  height: auto;                           /* 文字数に応じて高さ可変 */
+  /* 幅、高さ */
+  width: auto;
+  height: auto;
   
-  margin: 0 2vw;                          /* 要素外余白 */
+  /* 余白 */
+  margin: 0 2vw;
 
-  font-size: var(--btn-font, auto);       /* ボタン内の文字サイズ */
-  line-height: normal;                    /* ボタン内の文字高さ */
+  /* フォント */
+  font-size: var(--btn-font, auto);
+  line-height: normal;
 }
 .path-check header label {
-  width: var(--form-size, auto);          /* ラベル内の幅 */
-  height: var(--label-font, auto);        /* ラベル内の高さ */
+  /* 幅、高さ */
+  width: var(--form-size, auto);
+  height: var(--label-font, auto);
 
-  margin: 0 0 0 2rem;                     /* 要素外余白 */
+  /* 余白 */
+  margin: 0 0 0 2rem;
 
-  font-size: var(--label-font, auto);     /* ラベル内の文字サイズ */
-  line-height: normal;                    /* ラベル内の文字高さ */
-  color: white;                         /* ラベル内の文字色 */
+  /* フォント */
+  font-size: var(--label-font, auto);
+  line-height: normal;
+  color: white;
 }
 .path-check header input[type="number"] {
-  text-align: right;                      /* 文字位置 */
+  /* 配置 */
+  text-align: right;
 
-  width: var(--form-size, auto);          /* フォーム内の幅 */
-  height: var(--label-font, auto);        /* フォーム内の高さ */
+  /* 幅、高さ */
+  width: var(--form-size, auto);
+  height: var(--label-font, auto);
 
-  margin: 0 0 0 1rem;                     /* 要素外余白 */
-  padding: .1rem .2rem 0 0;               /* 要素内余白 */
+  /* 余白 */
+  margin: 0 0 0 1rem;
+  padding: 0.1rem 0.2rem 0 0;
 
-  font-size: calc(var(--label-font, auto) - .1rem);  /* フォーム内の文字サイズ */
-  font-family: serif;                     /* フォーム内の文字の見た目 */
-  line-height: normal;                    /* フォーム内の文字高さ */
+  /* フォント */
+  font-size: calc(var(--label-font, auto) - 0.1rem);
+  font-family: serif;
+  line-height: normal;
 }
-
-/* フォーム横の矢印非表示 */
 .no-spin::-webkit-inner-spin-button, .no-spin::-webkit-outer-spin-button {
   -webkit-appearance: none !important;
   margin: 0 !important;
@@ -189,157 +244,177 @@ input[type="checkbox"] {
 }
 
 
-
-/*==================================== メイン ====================================*/
+/******************** main ********************/
 .car-menu main, .car-manage main, .end main {
-  grid-area: main;                        /* グリッドレイアウト上の配置 */
-  display: flex;                          /* flexで横並び */
-  flex-direction: column;                 /* 縦並びに変更 */
-  align-items: center;                    /* 縦方向中央揃え */
+  /* 配置 */
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 .car-menu main .button, .end main .button {
-  text-align: center;                     /* 文字位置 */
+  /* 配置 */
+  display: block;
+  text-align: center;
 
-  width: var(--btn-size, auto);           /* ボタン内の幅 */
-  height: auto;                           /* ボタン内の高さ */
-  min-width: 20vw;                        /* ボタン内の最低幅 */
+  /* 幅、高さ */
+  width: var(--btn-size, auto);
+  height: auto;
+  min-width: 20vw;
 
-  margin-top: 12vh;                       /* 要素外余白(上側) */
+  /* 余白 */
+  margin-top: 15vh;
 
-  font-size: var(--btn-font);             /* ボタン内の文字サイズ */
-  line-height: normal;                    /* ボタン内の文字高さ */
+  /* フォント */
+  font-size: var(--btn-font);
+  line-height: normal;
 }
 .car-manage main .button {
-  text-align: center;                     /* 文字位置 */
+  /* 配置 */
+  display: block;
+  text-align: center;
 
-  width: var(--btn-size, auto);           /* ボタン内の幅 */
-  height: auto;                           /* ボタン内の高さ */
-  min-width: 20vw;                        /* ボタン内の最低幅 */
+  /* 幅、高さ */
+  width: var(--btn-size, auto);
+  height: auto;
+  min-width: 20vw;
 
-  margin-top: 10vh;                       /* 要素外余白(上側) */
+  /* 余白 */
+  margin-top: 20vh;
 
-  font-size: var(--btn-font);             /* ボタン内の文字サイズ */
-  line-height: normal;                    /* ボタン内の文字高さ */
+  /* フォント */
+  font-size: var(--btn-font);
+  line-height: normal;
 }
 .end main h1 {
-  margin: var(--h1-margin);               /* 要素外余白 */
+  /* 余白 */
+  margin: var(--h1-margin);
   
-  font-size: var(--h1-font);              /* h1タグ内の文字サイズ */
-  line-height: normal;                    /* h1タグ内の文字高さ */
+  /* フォント */
+  font-size: var(--h1-font);
+  line-height: normal;
 }
-.map main {
-  grid-area: main;                        /* グリッドレイアウト上の配置 */
-  position: relative;                     /* 相対位置 */
-  content: '';                            /* 要素を空にする */
+
+.dest-map main, .exist-route main, .add-route main, .car-watch main, .path-check main {
+  content: "";
 }
 .dest-map, .add-route {
-  cursor: url("./cursor/marker-icon.png") 12 50, grab;    /* マウスカーソルを画像にする (クリック判定のx,y座標をずらす) */
+  cursor: url("./cursor/marker-icon.png") 12 50, grab;
 }
 .exist-route, .path-check {
-  --map-cursor: default;                  /* マウスカーソルをデフォルトにする */
+  --map-cursor: default;
 }
 .car-watch {
-  --map-cursor: pointer;                  /* マウスカーソルをポインターにする */
+  --map-cursor: pointer;
 }
 
 
 
-/*==================================== フッター ====================================*/
-.car-menu footer, .map footer, .car-manage footer, .end footer {
-  grid-area: footer;                      /* グリッドレイアウト上の配置 */
-
-  background: var(--footer-color);        /* 背景 */
-  background: var(--webkit-footer-color); /* 背景 (ベンダープレフィックス) */
-
-  cursor: default;                        /* マウスカーソルをデフォルトにする */
-}
-.car-menu footer h1, .map footer h1, .car-manage footer h1, .all-car footer h1, .end footer h1 {
-  text-align: right;                      /* 文字位置 */
+/******************** footer ********************/
+.car-menu footer, .dest-map footer, .exist-route footer, .add-route footer, .car-watch footer, .car-manage footer, .path-check footer, .end footer {
+  /* 配置 */
+  position: inherit;
+  bottom: 0;
   
-  margin: 0 auto;                         /* 要素外余白 */
-  padding: 1vh 0 0 0;                     /* 要素内余白 */
+  /* 幅、高さ */
+  width: 100vw;
+  height: 4vh;
  
-  font-size: 2vh;                         /* h1タグ内の文字サイズ */
-  line-height: normal;                    /* h1タグ内の文字高さ */
-  color: white;                         /* h1タグ内の文字色 */
+  /* 余白 */
+  margin: inherit;
+  padding: auto;
+
+  /* 背景 */
+  background: var(--footer-color);
+  background: var(--webkit-footer-color);
+
+  /* カーソル */
+  cursor: default;
+}
+.welcome footer h1, .car-menu footer h1, .dest-map footer h1, .exist-route footer h1, .add-route footer h1, .car-watch footer h1, .car-manage footer h1, .path-check footer h1, .all-car footer h1, .end footer h1 {
+  /* 配置 */
+  display: block;
+  text-align: right;
+  
+  /* 余白 */
+  margin: 0 auto;
+  padding: 1vh 0 0 0;
+ 
+  /* フォント */
+  font-size: 2vh;
+  color: white;
 }
 
 
 
-/*==================================== ツールチップ ====================================*/
+/******************** tooltip ********************/
 .tooltip {
-  position: relative;                     /* 相対位置 */
+  position: relative;
 }
 .tooltip-text {
-  position: absolute;                     /* 絶対位置 */
-  display: inline-block;                  /* 配置の指定を可 */
-  left: 50%;                              /* 配置位置(左) */
-  bottom: -38px;                          /* 配置位置(下) */
+  /* 配置 */
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  bottom: -38px;
 
-  padding: 5px 20px;                      /* 要素内余白 */
+  /* 余白 */
+  padding: 5px 20px;
 
-  background: #333;                     /* 背景 */
+  /* 背景 */
+  background: #333;
 
-  font-size: .8rem;                       /* ツールチップ内の文字サイズ */
-  line-height: normal;                    /* ツールチップ内の文字高さ */
-  color: #fff;                          /* ツールチップ内の文字色 */
-  white-space: nowrap;                    /* ツールチップ内で改行しない */
+  /* フォント */
+  font-size: 0.8rem;
+  line-height: normal;
+  color: #fff;
+  white-space: nowrap;
 
-  border-radius: 20px;                    /* 枠線の丸み */
+  /* 枠線 */
+  border-radius: 20px;
   
-  transition: .3s ease-in;                /* 0.3sかけて徐々に加速 */
-  transform: translateX(-50%);            /* 親要素の真ん中に配置 */
+  /* アニメーション */
+  transition: 0.3s ease-in;
+  transform: translateX(-50%);
 
-  opacity: 0;                             /* デフォルトで非表示(透明) */
-  visibility: hidden;                     /* デフォルトで非表示(不可視) */
+  /* 可視性 */
+  opacity: 0;
+  visibility: hidden;
 }
 .tooltip-text:before {
-  content: '';                            /* 要素を空にする */
+  /* 挿入要素 */
+	content: '';
 
-  position: absolute;                     /* 絶対位置 */
-	top: -13px;                             /* 配置位置(上) */
-	left: 50%;                              /* 配置位置(左) */
+  /* 配置 */
+	position: absolute;
+	top: -13px;
+	left: 50%;
 
-  margin-left: -7px;                      /* 要素外余白(左) */
+  /* 余白 */
+	margin-left: -7px;
 
-  border: 7px solid transparent;          /* 枠線(透明) */
-	border-bottom: 7px solid #333;        /* 枠線(下側) */
+  /* 枠線 */
+	border: 7px solid transparent;
+	border-bottom: 7px solid #333;
 }
 .tooltip:hover .tooltip-text {
-  opacity: 1;                             /* ホバーで表示(不透明) */
-  visibility: visible;                    /* ホバーで表示(可視化) */
+  /* 可視性 */
+  opacity: 1;
+  visibility: visible;
 
-  transition-delay: .5s;                  /* ホバーしてから0.5秒後に開始 */
+  /* アニメーション */
+  transition-delay: 0.5s;
 }
 .car-menu .tooltip-text {
-  bottom: -43px;                          /* 配置位置(下) */
+  /* 配置 */
+  bottom: -43px;
 
-  font-size: 1rem;                        /* ツールチップ内の文字サイズ (車メニュー) */
+  /* フォント */
+  font-size: 1rem;
 }
 
 
 
-/*==================================== カスタムプロパティ ====================================*/
-.map input[type="checkbox"]:empty + label {
-  --label-color: rgb(9, 110, 72);
-  --label-before-color: rgb(85, 85, 85);
-}
-.map input[type="checkbox"]:empty + label:hover {
-  --label-color: rgb(6, 70, 45);
-  --label-before-color: rgb(46, 46, 46);
-}
-.map input[type="checkbox"]:checked + label {
-  --label-color: rgb(168, 14, 14);
-  --label-before-color: rgb(9, 175, 36);
-}
-.map input[type="checkbox"]:checked + label:hover {
-  --label-color: rgb(87, 8, 8);
-  --label-before-color: rgb(4, 87, 18);
-}
-
-
-
-/*==================================== お試しレスポンシブ ====================================*/
+/******************** お試しレスポンシブ(カスタムプロパティ変えてるだけ) ********************/
 /* PC */
 @media screen {
   .car-menu {
@@ -347,17 +422,17 @@ input[type="checkbox"] {
     --btn-size: 30rem;
   }
   .dest-map {
-    --label-padding: .55rem .8rem .4rem 2.1rem;
+    --label-padding: 0.55rem 0.8rem 0.4rem 2.1rem;
     --label-font: 1.5rem;
-    --label-before-margin: .55rem .52rem 0 -1.5rem;
+    --label-before-margin: 0.55rem 0.52rem 0 -1.5rem;
   }
   .exist-route {
     --btn-font: 1.6rem;
   }
   .add-route {
-    --label-padding: .55rem .8rem .4rem 2.1rem;
+    --label-padding: 0.55rem 0.8rem 0.4rem 2.1rem;
     --label-font: 1.5rem;
-    --label-before-margin: .55rem .52rem 0 -1.5rem;
+    --label-before-margin: 0.55rem 0.52rem 0 -1.5rem;
     --form-size: 20rem;
   }
   .car-watch {
@@ -386,17 +461,17 @@ input[type="checkbox"] {
     --btn-size: 30rem;
   }
   .dest-map {
-    --label-padding: .55rem .8rem .4rem 2.1rem;
+    --label-padding: 0.55rem 0.8rem 0.4rem 2.1rem;
     --label-font: 1.6rem;
-    --label-before-margin: .5rem .5rem 0 -1.5rem;
+    --label-before-margin: 0.5rem 0.5rem 0 -1.5rem;
   }
   .exist-route {
     --btn-font: 1.6rem;
   }
   .add-route {
-    --label-padding: .2rem .8rem .2rem 2.1rem;
+    --label-padding: 0.2rem 0.8rem 0.2rem 2.1rem;
     --label-font: 1.2rem;
-    --label-before-margin: .55rem .52rem 0 -1.5rem;
+    --label-before-margin: 0.55rem 0.52rem 0 -1.5rem;
     --form-size: 18rem;
   }
   .car-watch {
@@ -425,17 +500,17 @@ input[type="checkbox"] {
     --btn-size: 15rem;
   }
   .dest-map {
-    --label-padding: .3rem .8rem .2rem 2.1rem;
+    --label-padding: 0.3rem 0.8rem 0.2rem 2.1rem;
     --label-font: 1.3rem;
-    --label-before-margin: .4rem .4rem 0 -1.5rem;
+    --label-before-margin: 0.4rem 0.4rem 0 -1.5rem;
   }
   .exist-route {
     --btn-font: 1.3rem;
   }
   .add-route {
-    --label-padding: .2rem .8rem .2rem 2.1rem;
+    --label-padding: 0.2rem 0.8rem 0.2rem 2.1rem;
     --label-font: 1.3rem;
-    --label-before-margin: .55rem .3rem 0 -1.5rem;
+    --label-before-margin: 0.55rem 0.3rem 0 -1.5rem;
     --form-size: 16rem;
   }
   .car-watch {
@@ -464,17 +539,17 @@ input[type="checkbox"] {
     --btn-size: 20rem;
   }
   .dest-map {
-    --label-padding: .25rem .6rem .2rem 2rem;
+    --label-padding: 0.25rem 0.6rem 0.2rem 2rem;
     --label-font: 1rem;
-    --label-before-margin: .3rem .3rem 0 -1.5rem;
+    --label-before-margin: 0.3rem 0.3rem 0 -1.5rem;
   }
   .exist-route {
     --btn-font: 1rem;
   }
   .add-route {
-    --label-padding: .2rem .8rem .2rem 2.1rem;
+    --label-padding: 0.2rem 0.8rem 0.2rem 2.1rem;
     --label-font: 1.2rem;
-    --label-before-margin: .55rem .3rem 0 -1.6rem;
+    --label-before-margin: 0.55rem 0.3rem 0 -1.6rem;
     --form-size: 15rem;
   }
   .car-watch {
@@ -503,17 +578,17 @@ input[type="checkbox"] {
     --btn-size: 20rem;
   }
   .dest-map {
-    --label-padding: .25rem .6rem .2rem 2rem;
+    --label-padding: 0.25rem 0.6rem 0.2rem 2rem;
     --label-font: 1rem;
-    --label-before-margin: .3rem .3rem 0 -1.5rem;
+    --label-before-margin: 0.3rem 0.3rem 0 -1.5rem;
   }
   .exist-route {
     --btn-font: 1rem;
   }
   .add-route {
-    --label-padding: .2rem .8rem .2rem 2.1rem;
+    --label-padding: 0.2rem 0.8rem 0.2rem 2.1rem;
     --label-font: 1.2rem;
-    --label-before-margin: .55rem .3rem 0 -1.6rem;
+    --label-before-margin: 0.55rem 0.3rem 0 -1.6rem;
     --form-size: 20rem;
   }
   .car-watch {
@@ -542,17 +617,17 @@ input[type="checkbox"] {
     --btn-size: 20rem;
   }
   .dest-map {
-    --label-padding: .25rem .6rem .2rem 2rem;
+    --label-padding: 0.25rem 0.6rem 0.2rem 2rem;
     --label-font: 1rem;
-    --label-before-margin: .3rem .3rem 0 -1.5rem;
+    --label-before-margin: 0.3rem 0.3rem 0 -1.5rem;
   }
   .exist-route {
     --btn-font: 1rem;
   }
   .add-route {
-    --label-padding: .2rem .8rem .2rem 2.1rem;
-    --label-font: .9rem;
-    --label-before-margin: .55rem .3rem 0 -1.6rem;
+    --label-padding: 0.2rem 0.8rem 0.2rem 2.1rem;
+    --label-font: 0.9rem;
+    --label-before-margin: 0.55rem 0.3rem 0 -1.6rem;
     --form-size: 20rem;
   }
   .car-watch {
@@ -581,17 +656,17 @@ input[type="checkbox"] {
     --btn-size: 15rem;
   }
   .dest-map {
-    --label-padding: .3rem .6rem .2rem 1.8rem;
+    --label-padding: 0.3rem 0.6rem 0.2rem 1.8rem;
     --label-font: 1.2rem;
-    --label-before-margin: .4rem .4rem 0 -1.3rem;
+    --label-before-margin: 0.4rem 0.4rem 0 -1.3rem;
   }
   .exist-route {
     --btn-font: 1rem;
   }
   .add-route {
-    --label-padding: .1rem .2rem .1rem 2rem;
-    --label-font: .8rem;
-    --label-before-margin: .5rem .2rem 0 -1.9rem;
+    --label-padding: 0.1rem 0.2rem 0.1rem 2rem;
+    --label-font: 0.8rem;
+    --label-before-margin: 0.5rem 0.2rem 0 -1.9rem;
     --form-size: 5rem;
   }
   .car-watch {
@@ -620,17 +695,17 @@ input[type="checkbox"] {
     --btn-size: 15rem;
   }
   .dest-map {
-    --label-padding: .35rem .6rem .25rem 1.8rem;
+    --label-padding: 0.35rem 0.6rem 0.25rem 1.8rem;
     --label-font: 1.1rem;
-    --label-before-margin: .4rem .3rem 0 -1.3rem;
+    --label-before-margin: 0.4rem 0.3rem 0 -1.3rem;
   }
   .exist-route {
     --btn-font: 1rem;
   }
   .add-route {
-    --label-padding: .1rem .2rem .1rem 2rem;
-    --label-font: .8rem;
-    --label-before-margin: .5rem .2rem 0 -1.9rem;
+    --label-padding: 0.1rem 0.2rem 0.1rem 2rem;
+    --label-font: 0.8rem;
+    --label-before-margin: 0.5rem 0.2rem 0 -1.9rem;
     --form-size: 4rem;
   }
   .car-watch {
@@ -659,17 +734,17 @@ input[type="checkbox"] {
     --btn-size: 12rem;
   }
   .dest-map {
-    --label-padding: .2rem .5rem .2rem 1.8rem;
+    --label-padding: 0.2rem 0.5rem 0.2rem 1.8rem;
     --label-font: 1rem;
-    --label-before-margin: .3rem .3rem 0 -1.5rem;
+    --label-before-margin: 0.3rem 0.3rem 0 -1.5rem;
   }
   .exist-route {
-    --btn-font: .8rem;
+    --btn-font: 0.8rem;
   }
   .add-route {
-    --label-padding: .1rem .2rem .1rem 2.1rem;
-    --label-font: .8rem;
-    --label-before-margin: .5rem .2rem 0 -2rem;
+    --label-padding: 0.1rem 0.2rem 0.1rem 2.1rem;
+    --label-font: 0.8rem;
+    --label-before-margin: 0.5rem 0.2rem 0 -2rem;
     --form-size: 4rem;
   }
   .car-watch {
@@ -698,29 +773,29 @@ input[type="checkbox"] {
     --btn-size: 10rem;
   }
   .dest-map {
-    --label-padding: .2rem .4rem .25rem 1.8rem;
-    --label-font: .75rem;
-    --label-before-margin: .1rem .3rem 0 -1.5rem;
+    --label-padding: 0.2rem 0.4rem 0.25rem 1.8rem;
+    --label-font: 0.75rem;
+    --label-before-margin: 0.1rem 0.3rem 0 -1.5rem;
   }
   .exist-route {
-    --btn-font: .6rem;
+    --btn-font: 0.6rem;
   }
   .add-route {
-    --label-padding: .1rem .1rem .1rem 2.3rem;
-    --label-font: .7rem;
-    --label-before-margin: .2rem .1rem 0 -2.1rem;
+    --label-padding: 0.1rem 0.1rem 0.1rem 2.3rem;
+    --label-font: 0.7rem;
+    --label-before-margin: 0.2rem 0.1rem 0 -2.1rem;
     --form-size: 1.2rem;
   }
   .car-watch {
-    --btn-font: .75rem;
+    --btn-font: 0.75rem;
   }
   .car-manage {
     --btn-font: 1.2rem;
     --btn-size: 15rem;
   }
   .path-check {
-    --label-font: .9rem;
-    --btn-font: .8rem;
+    --label-font: 0.9rem;
+    --btn-font: 0.8rem;
     --form-size: 3rem;
   }
   .end {
