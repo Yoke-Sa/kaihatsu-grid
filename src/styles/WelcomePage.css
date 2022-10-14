@@ -1,0 +1,261 @@
+/**************************************************** Welcome Page ****************************************************/
+
+/* カスタムプロパティ */
+.welcome {
+  --grid-gap: 20px
+}
+
+/*======================== コンテナ ========================*/
+.welcome {
+  display: grid;      /* グリッドレイアウトを使用 */
+  gap: var(--grid-gap);
+
+  margin: 0 auto;     /* 外側余白 */
+
+  grid-template-rows: 6vh auto 4vh;    /* y方向 */
+  grid-template-columns: 15vw calc(70vw - (var(--grid-gap)*2)) 15vw;  /* x方向 */
+  grid-template-areas:    /* レイアウト */
+    "header header header"
+    "left   main   right "
+    "footer footer footer";
+
+  background: var(--page-color);
+  background: var(--webkit-page-color);
+}
+
+/*======================== ヘッダー ========================*/
+.welcome header {
+  grid-area: header;    /* グリッドレイアウト上の配置 */
+
+  background: var(--header-color);
+  background: var(--webkit-header-color);
+}
+.welcome header h1 {
+  text-align: center;
+
+  margin: inherit;
+
+  font-size: 4vh;
+}
+
+/*======================== メイン ========================*/
+.welcome main {
+  grid-area: main;      /* グリッドレイアウト上の配置 */
+}
+.welcome ul {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+
+  list-style: none;
+}
+.welcome li {
+  width: 20vw;
+
+  margin: 2vh 0 0 0;
+  padding: 0 auto;
+
+  background-color: rgba(0, 0, 0, 0.219);
+
+  border: solid .45rem blue;
+  border-top: none;
+  border-radius: 1rem;
+  box-sizing: border-box;
+}
+.welcome li h1{
+  min-width: 10vw;
+
+  margin: 0 -.45rem 0 -.45rem;
+  
+  background: linear-gradient(to right, rgb(127, 215, 250), white);
+  background: -webkit-linear-gradient(0deg, rgb(127, 215, 250), white);
+
+  font-size: 2vh;
+  line-height: normal;
+
+  border-left: solid 1rem rgb(132, 0, 240);
+  border-radius: 5px;
+}
+.welcome li p {
+  margin: 1vh 0 0 0;
+  padding: .2vh 0 1vh 0;
+
+  font-size: 1vw;
+  line-height: normal;
+}
+.welcome .button {
+  text-align: center;
+
+  height: 3.5vh;
+
+  font-size: 1vw;
+  line-height: 1.5vh;
+}
+.welcome .contents {
+  margin-top: 5vh;
+  
+  background-color: rgba(181, 171, 253, 0.473);
+
+  border: solid 5px rgb(85, 18, 241);
+  border-radius: 3rem;
+
+  overflow: hidden;
+}
+.welcome .contents h1 {
+  text-align: center;
+
+  margin: 3vh 20vw 1vh 20vw;
+
+  background-color: rgba(255, 255, 255, 0.781);
+
+  font-size: 2.5vh;
+
+  border-left: solid 1rem rgb(255, 230, 0);
+  border-right: solid 1rem rgb(255, 230, 0);
+}
+.welcome .contents h2 {
+  text-align: left;
+
+  margin: 3vh 2vw 1vh 2vw;
+  padding: 0 2vw;
+
+  background-color: rgba(52, 182, 52, 0.562);
+
+  font-size: 1vw;
+  color: white;
+
+  outline: dashed .2vw green;
+}
+.welcome .contents p {
+  margin: 0 2vw;
+  padding: auto;
+
+  font-size: 1vw;
+}
+.welcome .dest-img {
+  display: inline-block;
+
+  width: 1280px;
+  height: 720px;
+
+  /* 余白 */
+  margin: var(--dest-img-margin, auto);
+
+  /* 背景 */
+  background-image: url("../styles/img/dest-map.jpg");
+  background-size: cover;
+
+  /* アニメーション */
+  transform: scale(var(--dest-img-scale, auto));
+}
+
+/*======================== フッター ========================*/
+.welcome footer {
+  grid-area: footer;    /* グリッドレイアウト上の配置 */
+
+  background: var(--footer-color);
+  background: var(--webkit-footer-color);
+}
+.welcome footer h1 {
+  text-align: right;
+
+  margin: inherit;
+  padding: .5vh 0 0 0;
+
+  font-size: 2vh;
+  color: white;
+}
+
+/*======================== サイド ========================*/
+.welcome .left {
+  grid-area: left;    /* グリッドレイアウト上の配置 */
+}
+.welcome .right {
+  grid-area: right;    /* グリッドレイアウト上の配置 */
+}
+
+/*======================== お試しレスポンシブ ========================*/
+/* PC */
+@media screen {
+  .welcome {
+    --dest-img-margin: -1.7rem 0 -2rem -.5rem;
+    --dest-img-scale: .9;
+  }
+}
+/* タブレット(大) */
+@media screen and (max-width:1024px) {
+  .welcome {
+    --dest-img-margin: -12rem 0 -12rem -21.6rem;
+    --dest-img-scale: .45;
+  }
+}
+/* タブレット(中) */
+@media screen and (max-width:820px) {
+  .welcome {
+    --dest-img-margin: -13rem 0 -13rem -23.6rem;
+    --dest-img-scale: .4;
+  }
+}
+/* タブレット(小) */
+@media screen and (max-width: 768px) {
+  .welcome {
+    --dest-img-margin: -13.5rem 0 -14rem -24.75rem;
+    --dest-img-scale: .37;
+  }
+}
+/* タブレット(横長 大) */
+@media screen and (min-width: 768px) and (max-height: 800px) {
+  .welcome {
+    --dest-img-margin: -8.5rem 0 -9rem -14rem;
+    --dest-img-scale: .6;
+  }
+}
+/* タブレット(横長 小) */
+@media screen and (min-width: 768px) and (max-height: 600px) {
+  .welcome {
+    --dest-img-margin: -11rem 0 -11.5rem -19.12rem;
+    --dest-img-scale: .5;
+  }
+}
+/* スマホ(極大) */
+@media screen and (max-width: 540px) {
+  .welcome {
+    --dest-img-margin: -16rem 0 -17rem -29.75rem;
+    --dest-img-scale: .25;
+  }
+}
+/* スマホ(大) */
+@media screen and (max-width: 420px) {
+  .welcome {
+    --dest-img-margin: -18.2rem 0 -18.5rem -32.55rem;
+    --dest-img-scale: .18;
+  }
+}
+/* スマホ(中) */
+@media screen and (max-width: 400px) {
+  .welcome {
+    --dest-img-margin: -18.5rem 0 -18.8rem -33.01rem;
+    --dest-img-scale: .17;
+  }
+}
+/* スマホ(小) */
+@media screen and (max-width: 375px) {
+  .welcome {
+    --dest-img-margin: -18.6rem 0 -19.1rem -33.35rem;
+    --dest-img-scale: .16;
+  }
+}
+/* スマホ(極小) */
+@media screen and (max-width: 360px) {
+  .welcome {
+    --dest-img-margin: -18.8rem 0 -19.2rem -33.7rem;
+    --dest-img-scale: .155;
+  }
+}
+/* スマホ(超極小) */
+@media screen and (max-width: 320px) {
+  .welcome {
+    --dest-img-margin: -19.9rem 0 -20.3rem -35.45rem;
+    --dest-img-scale: .11;
+  }
+}

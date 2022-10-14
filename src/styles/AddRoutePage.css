@@ -1,0 +1,98 @@
+/**************************************************** AddRoute Page ****************************************************/
+*, *::before {
+  box-sizing: border-box;
+}
+
+/*======================== ヘッダー ========================*/
+.add-route label:not(#input) {
+  /* 余白 */
+  margin: 0 1rem 0 0;
+  padding: var(--label-padding);
+  
+  /* フォント */
+  font-size: var(--label-font);
+  color: white;
+  
+  /* 背景 */
+  background-color: var(--label-color);
+
+  /* 枠線 */
+  border: solid 0.1rem white;
+  border-radius: 100px;
+  box-shadow: 0 0 20px black;
+
+  /* カーソル */
+  cursor: pointer;
+
+  /* アニメーション */
+  transition: background-color .3s;
+}
+.add-route label:not(#input)::before {
+  /* 挿入要素 */
+  content: '';
+
+  /* 配置 */
+  display: inline-flex;
+
+  /* 幅、高さ */
+  width: var(--label-font);
+  height: var(--label-font);
+
+  /* 余白 */
+  margin: var(--label-before-margin);
+  padding: 0 auto;
+
+  /* 背景 */
+  background: var(--label-before-color);
+
+  /* 枠線 */
+  border: 0.1rem outset rgb(227, 225, 235);
+  border-radius: 100px;
+
+  /* アニメーション */
+  transition: background-color .3s;
+}
+.add-route .button {
+  /* 幅、高さ */
+  width: auto;
+  height: auto;
+
+  /* 余白 */
+  margin: 0 0 0 1rem;
+  padding: 0 0.6rem;
+
+  /* フォント */
+  font-size: var(--label-font);
+  line-height: normal;
+}
+.add-route label:not(.check) {
+  /* 幅、高さ */
+  width: var(--label-font, auto);
+  height: var(--label-font, auto);
+
+  /* 余白 */
+  margin: 0 0.2rem 0 0rem;
+
+  /* フォント */
+  font-size: var(--label-font, auto);
+  line-height: normal;
+  color: white;
+}
+.add-route input[type="text"] {
+  /* 配置 */
+  text-align: left;
+
+  /* 幅、高さ */
+  width: var(--form-size, auto);
+  height: var(--label-font, auto);
+
+  /* 余白 */
+  margin: 0 0;
+  padding: 0.3rem 0 0 0;
+
+  /* フォント */
+  font-size: calc(var(--label-font, auto) - 0.3rem);
+  font-family: serif;
+  line-height: normal;
+  color: black;
+}

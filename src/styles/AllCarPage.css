@@ -1,0 +1,99 @@
+/************************** AllCar Page **************************/
+  
+/******************** header ********************/
+.all-car header {
+  /* 配置 */
+  position: relative;
+  inset: inherit;
+
+  /* 幅、高さ */
+  width: inherit;
+  height: 6vh;
+
+  /* 余白 */
+  margin: inherit;
+
+  /* 背景 */
+  background: var(--header-color);
+  background: var(--webkit-header-color);
+}
+.all-car header h1 {
+  /* 配置 */
+  text-align: center;
+  inset: inherit;
+
+  /* 余白 */
+  margin: inherit;
+
+  /* フォント */
+  font-size: 4vh;
+  color: white;
+
+  /* 背景 */
+  background: var(--header-h1-color);
+  background: var(--webkit-header-h1-color);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/******************** main ********************/
+.all-car main {
+  /* 配置 */
+  position: relative;
+  inset: 0;
+
+  /* 幅、高さ */
+  width: inherit;
+  height: inherit;
+
+  /* 余白 */
+  margin: inherit;
+}
+.all-car p {
+  /* 配置 */
+  position: relative;
+
+  /* 余白 */
+  margin: 1vh 0 0 0;
+  padding: 0.2vh 0 1vh 0;
+
+  /* フォント */
+  font-size: 1vw;
+  line-height: normal;
+}
+.car-manage main .button {
+  /* 配置 */
+  display: block;
+  text-align: center;
+
+  /* 幅、高さ */
+  width: var(--btn-size, auto);
+  height: auto;
+  min-width: 20vw;
+
+  /* 余白 */
+  margin-top: 20vh;
+
+  /* フォント */
+  font-size: var(--btn-font);
+  line-height: normal;
+}
+
+/******************** footer ********************/
+.all-car footer {
+  /* 配置 */
+  position: fixed;
+  bottom: 0;
+
+  /* 幅、高さ */
+  width: 100vw;
+  height: 4vh;
+
+  /* 余白 */
+  margin: inherit;
+  padding: 0;
+
+  /* 背景 */
+  background: var(--footer-color);
+  background: var(--webkit-footer-color);
+}

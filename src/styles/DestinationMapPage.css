@@ -1,0 +1,75 @@
+/**************************************************** Destination Page ****************************************************/
+*, *::before {
+  box-sizing: border-box;
+}
+
+/*======================== ヘッダー ========================*/
+.dest-map header {
+  grid-area: header;    /* グリッドレイアウト上の配置 */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background: var(--header-color);
+  background: var(--webkit-header-color);
+
+  cursor: default;
+}
+.dest-map header label {
+  /* 余白 */
+  margin: 0 1vw 0 auto;
+  padding: var(--label-padding);
+  
+  /* フォント */
+  font-size: var(--label-font);
+  color: white;
+  
+  /* 背景 */
+  background-color: var(--label-color);
+
+  /* 枠線 */
+  border: solid 0.1rem white;
+  border-radius: 100px;
+  box-shadow: 0 0 20px black;
+
+  /* カーソル */
+  cursor: pointer;
+
+  /* アニメーション */
+  transition: background-color .3s;
+}
+.dest-map header label::before {
+  /* 挿入要素 */
+  content: '';
+
+  /* 配置 */
+  display: inline-flex;
+
+  /* 幅、高さ */
+  width: var(--label-font);
+  height: var(--label-font);
+
+  /* 余白 */
+  margin: var(--label-before-margin);
+  padding: 0 auto;
+
+  /* 背景 */
+  background: var(--label-before-color);
+
+  /* 枠線 */
+  border: 0.1rem outset rgb(227, 225, 235);
+  border-radius: 100px;
+
+  /* アニメーション */
+  transition: background-color .3s;
+}
+.dest-map .button {
+  /* 幅、高さ */
+  width: auto;
+  height: auto;
+  
+  /* フォント */
+  font-size: var(--label-font);
+  line-height: normal;
+}
