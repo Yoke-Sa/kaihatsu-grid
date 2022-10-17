@@ -1,101 +1,51 @@
-/************************** DestinationMap page **************************/
-*, *::before {
-  box-sizing: border-box;
+/***************************************************** DestinationMap Page *****************************************************/
+.dest-map *, .dest-map *::before {
+  box-sizing: border-box;                   /* 枠線を内側に設定 */
 }
 
-/******************** header ********************/
-.dest-map header {
-  /* 配置 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  /* 幅、高さ */
-  width: inherit;
-  height: 6vh;
-  
-  /* 余白 */
-  margin: inherit;
-  
-  /* 背景 */
-  background: var(--header-color);
-  background: var(--webkit-header-color);
 
-  /* カーソル */
-  cursor: default;
-}
+/*======================== ヘッダー内要素 ========================*/
+/* 巡回するボタン(ラベル) */
 .dest-map header label {
-  /* 余白 */
-  margin: 0 1vw 0 auto;
-  padding: var(--label-padding);
+  margin: 0 1vw 0 auto;                     /* ラベル外の余白 */
+  padding: var(--label-padding);            /* ラベル内の余白 */
   
-  /* フォント */
-  font-size: var(--label-font);
-  color: white;
+  font-size: var(--label-font);             /* ラベル内の文字サイズ */
+  color: white;                           /* ラベル内の文字色 */
   
-  /* 背景 */
-  background-color: var(--label-color);
+  background-color: var(--label-color);     /* ラベルの背景色 */
 
-  /* 枠線 */
-  border: solid 0.1rem white;
-  border-radius: 100px;
-  box-shadow: 0 0 20px black;
+  border: solid 0.1rem white;             /* ラベルの枠線 */
+  border-radius: 100px;                     /* 枠線の丸み */
+  box-shadow: 0 0 20px black;             /* ラベルの影 */
 
-  /* カーソル */
-  cursor: pointer;
+  cursor: pointer;                          /* ラベル上のマウスカーソル */
 
-  /* アニメーション */
-  transition: background-color .3s;
+  transition: background-color .3s;         /* 0.3秒間かけて背景色を変化 */
 }
+/* 巡回するボタン内の丸 */
 .dest-map header label::before {
-  /* 挿入要素 */
-  content: '';
+  content: '';                              /* 中身を空にする */
 
-  /* 配置 */
-  display: inline-flex;
+  display: inline-flex;                     /* インライン&横並びにする */
 
-  /* 幅、高さ */
-  width: var(--label-font);
-  height: var(--label-font);
+  width: var(--label-font);                 /* 丸の幅 */
+  height: var(--label-font);                /* 丸の高さ */
 
-  /* 余白 */
-  margin: var(--label-before-margin);
-  padding: 0 auto;
+  margin: var(--label-before-margin);       /* 丸外の余白 */
+  padding: 0 auto;                          /* 丸内の余白 */
 
-  /* 背景 */
-  background: var(--label-before-color);
+  background: var(--label-before-color);    /* 丸の背景色 */
 
-  /* 枠線 */
-  border: 0.1rem outset rgb(227, 225, 235);
-  border-radius: 100px;
+  border: 0.1rem outset rgb(227, 225, 235); /* 丸の枠線 */
+  border-radius: 100px;                     /* 枠線の丸み */
 
-  /* アニメーション */
-  transition: background-color .3s;
+  transition: background-color .3s;         /* 0.3秒間かけて背景色を変化 */
 }
 .dest-map .button {
-  /* 幅、高さ */
-  width: auto;
-  height: auto;
+  width: auto;                              /* ボタンの幅 */                     
+  height: auto;                             /* ボタンの高さ */
   
-  /* フォント */
-  font-size: var(--label-font);
-  line-height: normal;
-}
-
-/*** カスタムプロパティ ***/
-.dest-map input[type="checkbox"]:empty + label {
-  --label-color: rgb(9, 110, 72);
-  --label-before-color: rgb(85, 85, 85);
-}
-.dest-map input[type="checkbox"]:empty + label:hover {
-  --label-color: rgb(6, 70, 45);
-  --label-before-color: rgb(46, 46, 46);
-}
-.dest-map input[type="checkbox"]:checked + label {
-  --label-color: rgb(168, 14, 14);
-  --label-before-color: rgb(9, 175, 36);
-}
-.dest-map input[type="checkbox"]:checked + label:hover {
-  --label-color: rgb(87, 8, 8);
-  --label-before-color: rgb(4, 87, 18);
+  font-size: var(--label-font);             /* ボタン内の文字サイズ */
+  line-height: normal;                      /* ボタン内の文字高さ */
 }

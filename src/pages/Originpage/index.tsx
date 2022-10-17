@@ -15,14 +15,9 @@ import AllCar from "../AllCar";
 const OriginPage = () => {
     const { page } = useContext(PageStateContext);
 
-
     if (page === 0 || page === 10) {
-
         return (
-            <>
-                <WelcomePage />
-            </>
-
+            <WelcomePage />
         )
     } else if (page === 1) {
         return (

@@ -1,136 +1,83 @@
-/************************** AddRoute Page **************************/
-*, *::before {
-  box-sizing: border-box;
+/***************************************************** AddRoute Page *****************************************************/
+.add-route *, .add-route *::before {
+  box-sizing: border-box;                   /* 枠線を内側に設定 */
 }
 
-/******************** header ********************/
-.add-route header {
-  /* 配置 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  /* 幅、高さ */
-  width: inherit;
-  height: 6vh;
-  
-  /* 余白 */
-  margin: inherit;
-  
-  /* 背景 */
-  background: var(--header-color);
-  background: var(--webkit-header-color);
 
-  /* カーソル */
-  cursor: default;
+/*======================== ヘッダー内要素 ========================*/
+/* 巡回ルートボタン(ラベル) */
+.add-route label:not(#input) {
+  margin: 0 1rem 0 0;                       /* ラベル外の余白 */
+  padding: var(--label-padding);            /* ラベル内の余白 */
+  
+  font-size: var(--label-font);             /* ラベル内の文字サイズ */
+  color: white;                           /* ラベル内の文字色 */
+  
+  background-color: var(--label-color);     /* ラベルの背景色 */
+
+  border: solid 0.1rem white;             /* ラベルの枠線 */
+  border-radius: 100px;                     /* 枠線の丸み */
+  box-shadow: 0 0 20px black;             /* ラベルの影 */
+
+  cursor: pointer;                          /* ラベル上のマウスカーソル */
+
+  transition: background-color .3s;         /* 0.3秒間かけて背景色を変化 */
 }
-.add-route header label:not(#input) {
-  /* 余白 */
-  margin: 0 1rem 0 0;
-  padding: var(--label-padding);
-  
-  /* フォント */
-  font-size: var(--label-font);
-  color: white;
-  
-  /* 背景 */
-  background-color: var(--label-color);
+/* 巡回ルートボタン内の丸 */
+.add-route label:not(#input)::before {
+  content: '';                              /* 中身を空にする */
 
-  /* 枠線 */
-  border: solid 0.1rem white;
-  border-radius: 100px;
-  box-shadow: 0 0 20px black;
+  display: inline-flex;                     /* インライン&横並びにする */
 
-  /* カーソル */
-  cursor: pointer;
+  width: var(--label-font);                 /* 丸の幅 */
+  height: var(--label-font);                /* 丸の高さ */
 
-  /* アニメーション */
-  transition: background-color .3s;
+  margin: var(--label-before-margin);       /* 丸外の余白 */
+  padding: 0 auto;                          /* 丸内の余白 */
+
+  background: var(--label-before-color);    /* 丸の背景色 */
+
+  border: 0.1rem outset rgb(227, 225, 235); /* 丸の枠線 */
+  border-radius: 100px;                     /* 枠線の丸み */
+
+  transition: background-color .3s;         /* 0.3秒間かけて背景色を変化 */
 }
-.add-route header label:not(#input)::before {
-  /* 挿入要素 */
-  content: '';
-
-  /* 配置 */
-  display: inline-flex;
-
-  /* 幅、高さ */
-  width: var(--label-font);
-  height: var(--label-font);
-
-  /* 余白 */
-  margin: var(--label-before-margin);
-  padding: 0 auto;
-
-  /* 背景 */
-  background: var(--label-before-color);
-
-  /* 枠線 */
-  border: 0.1rem outset rgb(227, 225, 235);
-  border-radius: 100px;
-
-  /* アニメーション */
-  transition: background-color .3s;
-}
+/* ボタン */
 .add-route .button {
-  /* 幅、高さ */
-  width: auto;
-  height: auto;
+  width: auto;                              /* 文字数に応じて幅可変 */
+  height: auto;                             /* 文字数に応じて高さ可変 */
 
-  /* 余白 */
-  margin: 0 0 0 1rem;
-  padding: 0 0.6rem;
+  margin: 0 0 0 1rem;                       /* ボタン外の余白 */
+  padding: 0 0.6rem;                        /* ボタン内の余白 */
 
-  /* フォント */
-  font-size: var(--label-font);
-  line-height: normal;
+  font-size: var(--label-font);             /* ボタン内の文字サイズ */
+  line-height: normal;                      /* ボタン内の文字高さ */
 }
-.add-route header label:not(.check) {
-  /* 幅、高さ */
-  width: var(--label-font, auto);
-  height: var(--label-font, auto);
+/* ラベル(文字用) */
+.add-route label:not(.check) {
+  width: var(--label-font, auto);           /* ラベルの幅 */
+  height: var(--label-font, auto);          /* ラベルの高さ */
 
-  /* 余白 */
-  margin: 0 0.2rem 0 0rem;
+  margin: 0 0.2rem 0 0rem;                  /* ラベル外の余白 */
 
-  /* フォント */
-  font-size: var(--label-font, auto);
-  line-height: normal;
-  color: white;
+  font-size: var(--label-font, auto);       /* ラベル内の文字サイズ */
+  line-height: normal;                      /* ラベル内の文字高さ */
+  color: white;                           /* ラベル内の文字色 */
 }
-.add-route header input[type="text"] {
-  /* 配置 */
-  text-align: left;
+/* テキストフィールド */
+.add-route input[type="text"] {
+  text-align: left;                         /* テキストフィールド内の文字位置 */
 
-  /* 幅、高さ */
-  width: var(--form-size, auto);
-  height: var(--label-font, auto);
+  width: var(--form-size, auto);            /* テキストフィールドの幅 */
+  height: var(--label-font, auto);          /* テキストフィールドの高さ */
 
-  /* 余白 */
-  margin: 0 0;
-  padding: 0.3rem 0 0 0;
+  margin: 0 0;                              /* テキストフィールド外の余白 */
+  padding: 0.3rem 0 0 0;                    /* テキストフィールド内の余白 */
 
-  /* フォント */
-  font-size: calc(var(--label-font, auto) - 0.3rem);
-  font-family: serif;
-  line-height: normal;
-  color: black;
-}
+  background-color: white;                /* テキストフィールドの背景色 */
 
-/*** カスタムプロパティ ***/
-.add-route input[type="checkbox"]:empty + label:not(#input) {
-  --label-color: rgb(9, 110, 72);
-  --label-before-color: rgb(85, 85, 85);
-}
-.add-route input[type="checkbox"]:empty + label:not(#input):hover {
-  --label-color: rgb(6, 70, 45);
-  --label-before-color: rgb(46, 46, 46);
-}
-.add-route input[type="checkbox"]:checked + label:not(#input) {
-  --label-color: rgb(168, 14, 14);
-  --label-before-color: rgb(9, 175, 36);
-}
-.add-route input[type="checkbox"]:checked + label:not(#input):hover {
-  --label-color: rgb(87, 8, 8);
-  --label-before-color: rgb(4, 87, 18);
+  font-size: calc(var(--label-font, auto) - 0.3rem);  /* テキストフィールド内の文字サイズ */
+  font-family: serif;                       /* テキストフィールド内の文字の見た目 */
+  line-height: normal;                      /* テキストフィールド内の文字高さ */
+  color: black;                           /* テキストフィールド内の文字色 */
 }

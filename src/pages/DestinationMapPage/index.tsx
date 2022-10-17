@@ -61,7 +61,7 @@ const DestinationMapPage = () => {
 			});
 	};
 	return (
-		<div className="dest-map">
+		<div className="container map dest-map">
 			<BaseHeader>
 				<BaseCheckBox onChange={onClickJunkai}>巡回する</BaseCheckBox>
 				<BaseButton onClick={onClickRouteSearch} _className="button">
@@ -73,9 +73,7 @@ const DestinationMapPage = () => {
 			</BaseHeader>
 
 			<main>
-				<div className="gakubuti">
-					<DynamicMap />
-				</div>
+				<DynamicMap />
 			</main>
 
 			<footer>

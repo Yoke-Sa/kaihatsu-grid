@@ -7,7 +7,7 @@ import { PageStateContext } from "..";
 const AllCar = () => {
 	const { page, setPage } = useContext(PageStateContext);
 	return (
-		<div className="all-car">
+		<div className="container all-car">
 			<BaseHeader>
 				<h1><span>車一覧</span></h1>
 			</BaseHeader>

@@ -17,7 +17,7 @@ const PathOK = () => {
 	const { page, setPage } = useContext(PageStateContext);
 	const { radius, setRadius } = useContext(CircleContext);
 	return (
-		<div className="path-check">
+		<div className="container map path-check">
 			<BaseHeader>
 				<BaseButton onClick={() => OnClickSetState(7, setPage)} _className="button">
 					戻る
@@ -27,9 +27,7 @@ const PathOK = () => {
 			</BaseHeader>
 
 			<main>
-				<div className="gakubuti">
-					<DynamicMap />
-				</div>
+				<DynamicMap />
 			</main>
 
 			<footer>

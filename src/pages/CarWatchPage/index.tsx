@@ -15,7 +15,7 @@ const CarWatchPage = () => {
         OnClickSetState(1, setPage)
     }
     return (
-        <div className="car-watch">
+        <div className="container map car-watch">
             <BaseHeader>
                 <BaseButton onClick={() => OnClickSetState(1, setPage)} _className="button">
                     車メニューに戻る
@@ -23,9 +23,7 @@ const CarWatchPage = () => {
             </BaseHeader>
 
             <main>
-                <div className="gakubuti">
-                    <DynamicRouteMap />
-                </div>
+                <DynamicRouteMap />
             </main>
 
             <footer>

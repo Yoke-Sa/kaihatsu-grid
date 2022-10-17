@@ -13,7 +13,7 @@ const ExistsRoutePage = () => {
     //ここでLatLng[][]を取ってきても映らないから何かロジックを考えないといけない
     //ここにMapを持ってきてここでダイナミックインポート
     return (
-        <div className="exist-route">
+        <div className="container map exist-route">
             <BaseHeader>
                 <BaseButton onClick={() => OnClickSetState(1, setPage)} _className="button">
                     車メニューに戻る
@@ -25,9 +25,7 @@ const ExistsRoutePage = () => {
             </BaseHeader>
             
             <main>
-                <div className="gakubuti">
-                    <DynamicRouteMap />
-                </div>
+                <DynamicRouteMap />
             </main>
 
             <footer>

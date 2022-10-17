@@ -6,7 +6,7 @@ import { OnClickSetState } from "../../component/onClickSetState/onClickSetState
 const EndPage = () => {
     const { setPage } = useContext(PageStateContext);
     return (
-        <div className="end">
+        <div className="container end">
             <header>
                 <h1><span>Thank you for coming</span></h1>
             </header>

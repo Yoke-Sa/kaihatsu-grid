@@ -37,7 +37,7 @@ const AddRoutePage = () => {
 	};
 
 	return (
-		<div className="add-route">
+		<div className="container map add-route">
 			<BaseHeader>
 				<BaseCheckBox onChange={onClickJunkai}><span className="check">巡回ルート</span></BaseCheckBox>
 
@@ -53,9 +53,7 @@ const AddRoutePage = () => {
 			</BaseHeader>
 
 			<main>
-				<div className="gakubuti">
-					<DynamicRouteMap />
-				</div>
+				<DynamicRouteMap />
 			</main>
 
 			<footer>

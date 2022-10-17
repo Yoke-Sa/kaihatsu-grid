@@ -1,119 +1,28 @@
-/************************** AllCar Page **************************/
-.all-car {
-  /* 配置 */
-  position: absolute;
-  inset: 0;
+/***************************************************** AllCar Page *****************************************************/
 
-  /* 幅、高さ */
-  width: 100vw;
-  height: auto;
 
-  /* 余白 */
-  margin: 0 auto;
-  padding: 0;
-
-  /* 背景 */
-  background: var(--page-color);
-  background: var(--webkit-page-color);
-
-  /* 表示 */
-  overflow: hidden scroll;
-}
-  
-/******************** header ********************/
-.all-car header {
-  /* 配置 */
-  position: relative;
-  inset: inherit;
-
-  /* 幅、高さ */
-  width: inherit;
-  height: 6vh;
-
-  /* 余白 */
-  margin: inherit;
-
-  /* 背景 */
-  background: var(--header-color);
-  background: var(--webkit-header-color);
-}
-.all-car header h1 {
-  /* 配置 */
-  text-align: center;
-  inset: inherit;
-
-  /* 余白 */
-  margin: inherit;
-
-  /* フォント */
-  font-size: 4vh;
-  color: white;
-
-  /* 背景 */
-  background: var(--header-h1-color);
-  background: var(--webkit-header-h1-color);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/******************** main ********************/
-.all-car main {
-  /* 配置 */
-  position: relative;
-  inset: 0;
-
-  /* 幅、高さ */
-  width: inherit;
-  height: inherit;
-
-  /* 余白 */
-  margin: inherit;
-}
+/*======================== メイン内要素 ========================*/
+/* pタグ */
 .all-car p {
-  /* 配置 */
-  position: relative;
+  position: relative;                       /* 相対位置 */
 
-  /* 余白 */
-  margin: 1vh 0 0 0;
-  padding: 0.2vh 0 1vh 0;
+  margin: 1vh 0 0 0;                        /* pタグ外の余白 */
+  padding: 0.2vh 0 1vh 0;                   /* pタグ内の余白 */
 
-  /* フォント */
-  font-size: 1vw;
-  line-height: normal;
+  font-size: 1vw;                           /* pタグ内の文字サイズ */
+  line-height: normal;                      /* pタグ内の文字高さ */
 }
+/* ボタン */
 .car-manage main .button {
-  /* 配置 */
-  display: block;
-  text-align: center;
+  display: block;                           /* 縦並び */
+  text-align: center;                       /* ボタン内の文字位置 */
 
-  /* 幅、高さ */
-  width: var(--btn-size, auto);
-  height: auto;
-  min-width: 20vw;
+  width: var(--btn-size, auto);             /* ボタンの幅 */
+  height: auto;                             /* 高さ可変 */
+  min-width: 20vw;                          /* ボタンの最低幅 */
 
-  /* 余白 */
-  margin-top: 20vh;
+  margin-top: 20vh;                         /* ボタン外の余白(上側) */
 
-  /* フォント */
-  font-size: var(--btn-font);
-  line-height: normal;
-}
-
-/******************** footer ********************/
-.all-car footer {
-  /* 配置 */
-  position: fixed;
-  bottom: 0;
-
-  /* 幅、高さ */
-  width: 100vw;
-  height: 4vh;
-
-  /* 余白 */
-  margin: inherit;
-  padding: 0;
-
-  /* 背景 */
-  background: var(--footer-color);
-  background: var(--webkit-footer-color);
+  font-size: var(--btn-font);               /* ボタン内の文字サイズ */
+  line-height: normal;                      /* ボタン内の文字高さ */
 }
