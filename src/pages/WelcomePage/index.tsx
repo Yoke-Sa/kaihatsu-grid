@@ -57,13 +57,13 @@ const WelcomePage = () => {
 				</div>
 			</main>
 
-			<aside className="left"></aside>
+			<aside className="left" />
 
 			<footer>
 				<h1>&copy; Kohga. All rights Reserved.</h1>
 			</footer>
 
-			<aside className="right"></aside>
+			<aside className="right" />
 		</div>
 	);
 };

@@ -63,7 +63,7 @@ const DestinationMapPage = () => {
 	return (
 		<div className="container map dest-map">
 			<BaseHeader>
-				<BaseCheckBox onChange={onClickJunkai}>巡回する</BaseCheckBox>
+				<BaseCheckBox onChange={onClickJunkai}><span className="check">巡回する</span></BaseCheckBox>
 				<BaseButton onClick={onClickRouteSearch} _className="button">
 					経路探索
 				</BaseButton>

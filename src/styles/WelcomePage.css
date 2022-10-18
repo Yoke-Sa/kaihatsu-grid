@@ -1,11 +1,13 @@
 /***************************************************** Welcome Page *****************************************************/
-/* カスタムプロパティ */
+/* 共通カスタムプロパティ */
 .welcome {
-  --grid-gap: 20px;
+  --grid-gap: 20px;                         /* グリッド間の幅 */
+  --li-h1-margin: .5rem;                    /* リストアイテム内のh1タグ外の余白 */
 }
 
 
-/*======================== コンテナ ========================*/
+
+/*================================================ コンテナ ================================================*/
 .welcome {
   display: grid;                            /* グリッドレイアウトを使用 */
   gap: var(--grid-gap);                     /* グリッドセル間の表示幅 */
@@ -19,12 +21,16 @@
     "left   main   right "
     "footer footer footer";
 
-  background: var(--page-color);            /* コンテナの背景色 */
+  background: var(--cont-page-color);       /* コンテナの背景色 */
   background: var(--webkit-page-color);     /* コンテナの背景色 (ベンダープレフィックス) */
 }
 
 
-/*======================== メイン内要素 ========================*/
+
+/*================================================ メイン内要素 ================================================*/
+.welcome main {
+  min-height: 90vh;                         /* メインタグの最低表示幅 */
+}
 /* リスト */
 .welcome ul {
   display: flex;                            /* flexで横並び */
@@ -35,95 +41,109 @@
 }
 /* リストアイテム */
 .welcome li {
-  width: 20vw;                              /* アイテムの表示幅 */
+  width: var(--li-width);                   /* アイテムの表示幅 */
 
-  margin: 2vh 0 0 0;                        /* アイテム外の余白 */
+  margin: 5vh 0 0 0;                        /* アイテム外の余白 */
   padding: 0 auto;                          /* アイテム内の余白 */
 
   background-color: rgba(0, 0, 0, 0.219); /* アイテムの背景色 */
 
-  border: solid .45rem blue;              /* アイテムの枠線 */
-  border-top: none;                         /* アイテムの枠線(上側)を非表示 */
-  border-radius: 1rem 1rem 1rem 5rem;       /* 枠線の丸み(左上、右上、右下、左下 : 時計回り) */                    
+  border: solid var(--li-h1-margin) blue; /* アイテムの枠線 */
+  border-top: none;                         /* アイテムの枠線 (上側) を非表示 */
+  border-radius: 1rem;                      /* 枠線の丸み */                    
   box-sizing: border-box;                   /* 枠線を内側に設定 */
 }
-/* リスト内のh1タグ */
+/* リストアイテムのh1タグ */
 .welcome li h1{
   min-width: 10vw;                          /* h1タグの最低表示幅 */
 
-  margin: 0 -.45rem 0 -.45rem;              /* h1タグ外の余白 */
-  
+  margin: 0 calc(-1*var(--li-h1-margin));   /* h1タグ外の余白 */
+  padding-right: var(--h1-side-bar);        /* h1タグ内の余白 */
+
   background: linear-gradient(to right, rgb(127, 215, 250), white);     /* h1タグの背景色 */
   background: -webkit-linear-gradient(0deg, rgb(127, 215, 250), white); /* h1タグの背景色 (ベンダープレフィックス) */
 
-  font-size: 2vh;                           /* h1タグ内の文字サイズ */
+  font-size: var(--h1-size);                /* h1タグ内の文字サイズ */
   line-height: normal;                      /* h1タグ内の文字表示高さ */
+  text-shadow:  -2px -2px 20px darkseagreen, -2px 0 20px white, -2px 2px 20px darkseagreen,   /* 文字の周りの影をぼかして枠っぽくする */
+                   0 -2px 20px white,                                0 2px 20px white,          /* 文字の周りの影をぼかして枠っぽくする */
+                 2px -2px 20px darkseagreen,  2px 0 20px white,  2px 2px 20px darkseagreen;   /* 文字の周りの影をぼかして枠っぽくする */
 
-  border-left: solid 1rem rgb(132, 0, 240); /* h1タグの枠線(左側) */
+  border-left: solid var(--h1-side-bar) rgb(132, 0, 240); /* h1タグの枠線 (左側) */
   border-radius: 5px;                       /* 枠線の丸み */
 }
-/* リスト内のpタグ */
+/* リストアイテムのpタグ */
 .welcome li p {
   margin: 1vh 0 0 0;                        /* pタグ外の余白 */
   padding: .2vh 0 1vh 0;                    /* pタグ内の余白 */
 
-  font-size: 1vw;                           /* pタグ内の文字サイズ */
-  line-height: normal;                      /* pタグ内の文字表示高さ */
+  font-size: var(--p-size);                 /* pタグ内の文字サイズ */
+  font-weight: 900;                         /* pタグ内の文字太さ */
 }
 /* ボタン */
 .welcome .button {
   text-align: center;                       /* ボタン内の文字位置 */
 
-  width: auto;                              /* 文字数に応じて表示幅可変 */
-  height: 3.5vh;                            /* ボタンの表示高さ */
+  padding-top: .25vh;
 
-  font-size: 1vw;                           /* ボタン内の文字サイズ */
-  line-height: 1.5vh;                       /* ボタン内の文字表示高さ */
+  width: auto;                              /* 文字数に応じて表示幅可変 */
+  height: auto;                             /* 文字数に応じて表示高さ可変 */
+
+  font-size: var(--btn-font-size);          /* ボタン内の文字サイズ */
+  line-height: normal;                      /* ボタン内の文字表示高さ */
 }
 /* 使い方説明欄 */
 .welcome .contents {
-  margin-top: 5vh;                          /* 要素外の余白 */
-  
-  background-color: rgba(181, 171, 253, 0.473); /* 背景色 */
+  margin-top: 10vh;                         /* 説明欄外の余白 (上側) */
+  padding-bottom: 1vh;                      /* 説明欄内の余白 (下側) */
 
-  border: solid 5px rgb(85, 18, 241);     /* 枠線 */
-  border-radius: 3rem;                      /* 枠線の丸み */
+  background-color: rgba(181, 171, 253, 0.473); /* 説明欄の背景色 */
+
+  border: solid 5px rgb(85, 18, 241);     /* 説明欄の枠線 */
+  border-radius: 2rem 2rem 1rem 1rem;       /* 枠線の丸み */
 
   overflow: hidden;                         /* はみ出した要素を隠す */
 }
-/* 説明欄内のh1タグ */
+/* 説明欄のh1タグ */
 .welcome .contents h1 {
   text-align: center;                       /* h1タグ内の文字位置 */
 
-  margin: 3vh 20vw 1vh 20vw;                /* h1タグ外の余白 */
+  margin: var(--cont-h1-margin);            /* h1タグ外の余白 */
 
   background-color: rgba(255, 255, 255, 0.781); /* h1タグの背景色 */
 
-  font-size: 2.5vh;                         /* h1タグ内の文字サイズ */
+  font-size: var(--h1-size);                /* h1タグ内の文字サイズ */
+  font-weight: 900;                         /* h1タグ内の文字太さ */
+  text-shadow: -1px 1px 10px gray;        /* h1タグ内の文字の影 */
 
-  border-left: solid 1rem rgb(255, 230, 0);   /* h1タグの枠線(左側) */
-  border-right: solid 1rem rgb(255, 230, 0);  /* h1タグの枠線(→側) */
+  border-left: solid var(--h1-side-bar) rgb(255, 230, 0);   /* h1タグの枠線 (左側) */
+  border-right: solid var(--h1-side-bar) rgb(255, 230, 0);  /* h1タグの枠線 (右側) */
 }
-/* 説明欄内のh2タグ */
+/* 説明欄のh2タグ */
 .welcome .contents h2 {
   text-align: left;                         /* h2タグ内の文字位置 */
 
-  margin: 3vh 2vw 1vh 2vw;                  /* h2タグ外の余白 */
+  margin: var(--h2-margin);                 /* h2タグ外の余白 */
   padding: 0 2vw;                           /* h2タグ内の余白 */
 
   background-color: rgba(52, 182, 52, 0.562); /* h2タグの背景色 */
 
-  font-size: 1vw;                           /* h2タグ内の文字サイズ */
+  font-size: var(--h2-size);                /* h2タグ内の文字サイズ */
+  font-weight: 900;                         /* h2タグ内の文字太さ */
   color: white;                           /* h2タグ内の文字色 */
+  text-shadow:  -2px -2px 2px gray, -2px 0 2px black, -2px 2px 2px black,   /* 文字の周りの影をぼかして枠っぽくする */
+                   0 -2px 2px black,                       0 2px 2px black,   /* 文字の周りの影をぼかして枠っぽくする */
+                 2px -2px 2px black, 2px 0 2px black,  2px 2px 2px gray;    /* 文字の周りの影をぼかして枠っぽくする */
 
   outline: dashed .2vw green;             /* h2タグの外枠 */
 }
-/* 説明欄内のpタグ */
+/* 説明欄のpタグ */
 .welcome .contents p {
   margin: 0 2vw;                            /* pタグ外の余白 */
-  padding: auto;                            /* pタグ内の余白 */
+  padding: 0 auto;                          /* pタグ内の余白 */
 
-  font-size: 1vw;                           /* pタグ内の文字サイズ */
+  font-size: var(--p-size);                 /* pタグ内の文字サイズ */
+  font-weight: 900;                         /* pタグ内の文字太さ */
 }
 /* 説明用画像 */
 .welcome .dest-img {
@@ -135,13 +155,14 @@
   margin: var(--dest-img-margin, auto);     /* 画像外の余白 */
 
   background-image: url("../styles/img/dest-map.jpg");  /* 画像のリンク */
-  background-size: cover;                   /* 画像のサイズ */
+  background-size: cover;                   /* 画像のサイズ (はみ出さない設定) */
 
   transform: scale(var(--dest-img-scale, auto));  /* 画像スケールの調整 */
 }
 
 
-/*======================== サイド ========================*/
+
+/*================================================ サイド ================================================*/
 .welcome .left {
   grid-area: left;                          /* グリッドレイアウト上の配置 */
 }
@@ -150,88 +171,213 @@
 }
 
 
-/*======================== お試しレスポンシブ ========================*/
+
+/*================================================ メディアクエリ ================================================*/
 /* PC */
 @media screen {
   .welcome {
-    --dest-img-margin: -1.7rem 0 -2rem -.5rem;
-    --dest-img-scale: .9;
+    --dest-img-margin: -.75rem 0 -1rem .5rem;             /* 画像外の余白 */
+    --dest-img-scale: .95;                                /* 画像スケール */
+
+    --li-width: 25vw;                                     /* リストアイテムの表示幅 */
+
+    --h1-size: 2.5rem;                                    /* h1タグ内の文字サイズ */
+    --h1-side-bar: 2rem;                                  /* h1タグの枠線 (横) */
+
+    --cont-h1-margin: 7.5vh 15vw 6vh 15vw;                /* 説明欄のh1タグ外の余白 */
+    
+    --h2-size: 1.75rem;                                   /* h2タグ内の文字サイズ */
+    --h2-margin: 5vh 2vw 1vh 2vw;                         /* h2タグ外の余白 */
+
+    --p-size: 1.5rem;                                     /* pタグ内の文字サイズ */
+
+    --btn-font-size: 1.3rem;                              /* ボタン内の文字サイズ */
   }
 }
-/* タブレット(大) */
+/* タブレット (大) */
 @media screen and (max-width:1024px) {
   .welcome {
-    --dest-img-margin: -12rem 0 -12rem -21.6rem;
-    --dest-img-scale: .45;
+    grid-template-columns: 5vw calc(90vw - (var(--grid-gap)*2)) 5vw;  /* モバイル端末の場合は左右の余白を縮めて表示 */
+
+    --dest-img-margin: -10rem 0 -10.5rem -16rem;          /* 画像外の余白 */
+    --dest-img-scale: .55;                                /* 画像スケール */
+    
+    --li-width: calc(90vw - (var(--grid-gap)*2) - 20vw);  /* リストアイテムの表示幅 */
+
+    --h1-side-bar: 1.5rem;                                /* h1タグの枠線 (横) */
+    
+    --cont-h1-margin: 3.5vh 18vw 2vh 18vw;                /* 説明欄のh1タグ外の余白 */
+
+    --h2-size: 1.7rem;                                    /* h2タグ内の文字サイズ */
+    --h2-margin: 1vh 2vw .3vh 2vw;                        /* h2タグ外の余白 */
+
+    --p-size: 1.4rem;                                     /* pタグ内の文字サイズ */    
+  }
+  .welcome ul {
+    flex-direction: column;                               /* モバイル端末の場合は縦並び表示 */
+    align-items: center;                                  /* 縦方向中央揃え */
   }
 }
-/* タブレット(中) */
+/* タブレット (中) */
 @media screen and (max-width:820px) {
   .welcome {
-    --dest-img-margin: -13rem 0 -13rem -23.6rem;
-    --dest-img-scale: .4;
+    --dest-img-margin: -11rem 0 -11.5rem -18.5rem;        /* 画像外の余白 */
+    --dest-img-scale: .5;                                 /* 画像スケール */
+
+    --h1-size: 2.2rem;                                    /* h1タグ内の文字サイズ */
+    --h1-side-bar: 1.8rem;                                /* h1タグの枠線 (横) */
+
+    --cont-h1-margin: 3vh 20vw 2vh 20vw;                  /* 説明欄のh1タグ外の余白 */
+
+    --h2-size: 1.5rem;                                    /* h2タグ内の文字サイズ */
+    --h2-margin: 1.2vh 2vw .5vh 2vw;                      /* h2タグ外の余白 */
+
+    --p-size: 1.3rem;                                     /* pタグ内の文字サイズ */
+    
+    --btn-font-size: 1.2rem;                              /* ボタン内の文字サイズ */
   }
 }
-/* タブレット(小) */
+/* タブレット (小) */
 @media screen and (max-width: 768px) {
   .welcome {
-    --dest-img-margin: -13.5rem 0 -14rem -24.75rem;
-    --dest-img-scale: .37;
+    --dest-img-margin: -12rem 0 -12.5rem -20rem;          /* 画像外の余白 */
+    --dest-img-scale: .45;                                /* 画像スケール */
+
+    --h1-size: 2rem;                                      /* h1タグ内の文字サイズ */
+
+    --cont-h1-margin: 3.5vh 20vw 2vh 20vw;                /* 説明欄のh1タグ外の余白 */
+
+    --btn-font-size: 1.15rem;                             /* ボタン内の文字サイズ */
   }
 }
-/* タブレット(横長 大) */
+/* タブレット (横長 大) */
 @media screen and (min-width: 768px) and (max-height: 800px) {
   .welcome {
-    --dest-img-margin: -8.5rem 0 -9rem -14rem;
-    --dest-img-scale: .6;
+    grid-template-columns: 5vw calc(90vw - (var(--grid-gap)*2)) 5vw;  /* モバイル端末の場合は左右の余白を縮めて表示 */
+
+    --dest-img-margin: -8.5rem 0 -9rem -13.5rem;          /* 画像外の余白 */
+    --dest-img-scale: .6;                                 /* 画像スケール */
+
+    --li-width: calc(90vw - (var(--grid-gap)*2) - 30vw);  /* リストアイテムの表示幅 */
+
+    --h1-size: 2rem;                                      /* h1タグ内の文字サイズ */
+    --h1-side-bar: 2rem;                                  /* h1タグの枠線 (横) */
+
+    --cont-h1-margin: 6vh 25vw 4.5vh 25vw;                /* 説明欄のh1タグ外の余白 */
+
+    --h2-size: 1.5rem;                                    /* h2タグ内の文字サイズ */
+    --h2-margin: 4vh 2vw 1vh 2vw;                         /* h2タグ外の余白 */
+
+    --p-size: 1.25rem;                                    /* pタグ内の文字サイズ */
+
+    --btn-font-size: 1.1rem;                              /* ボタン内の文字サイズ */
+  }
+  .welcome ul {
+    flex-direction: column;                               /* モバイル端末の場合は縦並び表示 */
+    align-items: center;                                  /* 縦方向中央揃え */
   }
 }
-/* タブレット(横長 小) */
+/* タブレット (横長 小) */
 @media screen and (min-width: 768px) and (max-height: 600px) {
   .welcome {
-    --dest-img-margin: -11rem 0 -11.5rem -19.12rem;
-    --dest-img-scale: .5;
+    --dest-img-margin: -8rem 0 -8.5rem -12.7rem;          /* 画像外の余白 */
+    --dest-img-scale: .62;                                /* 画像スケール */
+
+    --h1-size: 1.8rem;                                    /* h1タグ内の文字サイズ */
+    --h1-side-bar: 1.5rem;                                /* h1タグの枠線 (横) */
+
+    --h2-size: 1.4rem;                                    /* h2タグ内の文字サイズ */
+    
+    --p-size: 1.1rem;                                     /* pタグ内の文字サイズ */
+    
+    --btn-font-size: 1rem;                                /* ボタン内の文字サイズ */
   }
 }
-/* スマホ(極大) */
+/* スマホ (極大) */
 @media screen and (max-width: 540px) {
   .welcome {
-    --dest-img-margin: -16rem 0 -17rem -29.75rem;
-    --dest-img-scale: .25;
+    --dest-img-margin: -14.8rem 0 -15.3rem -26.3rem;      /* 画像外の余白 */
+    --dest-img-scale: .32;                                /* 画像スケール */
+
+    --li-width: calc(90vw - (var(--grid-gap)*2) - 20vw);  /* リストアイテムの表示幅 */
+
+    --h1-size: 1.8rem;                                    /* h1タグ内の文字サイズ */
+    --h1-side-bar: 1.3rem;                                /* h1タグの枠線 (横) */
+
+    --cont-h1-margin: 5vh 12vw 3.5vh 12vw;                /* 説明欄のh1タグ外の余白 */
+
+    --h2-size: 1.3rem;                                    /* h2タグ内の文字サイズ */
+    --h2-margin: 3vh 2vw 1vh 2vw;                         /* h2タグ外の余白 */
+
+    --p-size: 1rem;                                       /* pタグ内の文字サイズ */
+
+    --btn-font-size: .8rem;                               /* ボタン内の文字サイズ */
   }
 }
-/* スマホ(大) */
+/* スマホ (大) */
 @media screen and (max-width: 420px) {
   .welcome {
-    --dest-img-margin: -18.2rem 0 -18.5rem -32.55rem;
-    --dest-img-scale: .18;
+    --dest-img-margin: -17rem 0 -17.5rem -30rem;          /* 画像外の余白 */
+    --dest-img-scale: .23;                                /* 画像スケール */
+
+    --h1-size: 1.6rem;                                    /* h1タグ内の文字サイズ */
+
+    --cont-h1-margin: 3.5vh 10vw 2.5vh 10vw;              /* 説明欄のh1タグ外の余白 */
+
+    --h2-size: 1.2rem;                                    /* h2タグ内の文字サイズ */
+    --h2-margin: 2vh 2vw 1vh 2vw;                         /* h2タグ外の余白 */
+
+    --btn-font-size: .9rem;                               /* ボタン内の文字サイズ */
   }
 }
-/* スマホ(中) */
+/* スマホ (中) */
 @media screen and (max-width: 400px) {
   .welcome {
-    --dest-img-margin: -18.5rem 0 -18.8rem -33.01rem;
-    --dest-img-scale: .17;
+    --dest-img-margin: -17.2rem 0 -17.7rem -30.5rem;      /* 画像外の余白 */
+    --dest-img-scale: .22;                                /* 画像スケール */
   }
 }
-/* スマホ(小) */
+/* スマホ (小) */
 @media screen and (max-width: 375px) {
   .welcome {
-    --dest-img-margin: -18.6rem 0 -19.1rem -33.35rem;
-    --dest-img-scale: .16;
+    --dest-img-margin: -17.6rem 0 -18.1rem -31rem;        /* 画像外の余白 */
+    --dest-img-scale: .21;                                /* 画像スケール */
+
+    --cont-h1-margin: 3.5vh 10vw 3vh 10vw;                /* 説明欄のh1タグ外の余白 */
+
+    --h2-size: 1.1rem;                                    /* h2タグ内の文字サイズ */
+    --h2-margin: 3vh 2vw 1vh 2vw;                         /* h2タグ外の余白 */
+
+    --btn-font-size: .8rem;                               /* ボタン内の文字サイズ */
   }
 }
-/* スマホ(極小) */
+/* スマホ (極小) */
 @media screen and (max-width: 360px) {
   .welcome {
-    --dest-img-margin: -18.8rem 0 -19.2rem -33.7rem;
-    --dest-img-scale: .155;
+    --dest-img-margin: -17.8rem 0 -18.3rem -31.45rem;     /* 画像外の余白 */
+    --dest-img-scale: .20;                                /* 画像スケール */
+
+    --cont-h1-margin: 3.5vh 10vw 2.5vh 10vw;              /* 説明欄のh1タグ外の余白 */
+
+    --h2-size: 1.2rem;                                    /* h2タグ内の文字サイズ */
   }
 }
-/* スマホ(超極小) */
+/* スマホ (超極小) */
 @media screen and (max-width: 320px) {
   .welcome {
-    --dest-img-margin: -19.9rem 0 -20.3rem -35.45rem;
-    --dest-img-scale: .11;
+    --dest-img-margin: -19rem 0 -19.5rem -33.7rem;        /* 画像外の余白 */
+    --dest-img-scale: .15;                                /* 画像スケール */
+
+    --li-width: calc(90vw - (var(--grid-gap)*2) - 15vw);  /* リストアイテムの表示幅 */
+
+    --h1-size: 1.1rem;                                    /* h1タグ内の文字サイズ */
+    --h1-side-bar: .8rem;                                 /* h1タグの枠線 (横) */
+
+    --h2-size: .8rem;                                     /* h2タグ内の文字サイズ */
+    --h2-margin: 2vh 2vw 1vh 2vw;                         /* h2タグ外の余白 */
+
+    --p-size: .7rem;                                      /* pタグ内の文字サイズ */
+
+    --btn-font-size: .65rem;                              /* ボタン内の文字サイズ */
   }
 }
