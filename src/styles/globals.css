@@ -2,7 +2,7 @@
 
 /*==================================== グローバル設定 ====================================*/
 :root {
-  font-family: serif;                     /* 文字の見た目 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 'Yu Gothic', 'Meryo', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";                     /* 文字の見た目 */
 
   user-select: none;                      /* ドラッグで文字選択を不可 */
   scrollbar-width: none;                  /* スクロールバー非表示 (Firefox) */
@@ -38,6 +38,9 @@ body {
 header {
   grid-area: header;                      /* グリッドレイアウト上の配置 */
 
+  margin: 0;
+  padding: 0;
+
   background: var(--header-color);        /* ヘッダーの背景色 */
   background: var(--webkit-header-color); /* ヘッダーの背景色 (ベンダープレフィックス) */
 
@@ -49,7 +52,6 @@ header h1 {
   margin: inherit;                        /* h1タグ外の余白 */
 
   font-size: 4vh;                         /* h1タグ内の文字サイズ */
-  font-weight: 900;                       /* h1タグ内の文字太さ */
 }
 header h1 span {
   background: var(--header-h1-color);     /* spanタグ内の背景色 */
@@ -159,7 +161,7 @@ ul {
   box-shadow: 0 0 20px rgb(88, 233, 173); /* ボタンの影 */
   
   color: rgba(255, 255, 255);           /* ボタン内の文字色 */
-  font-family: serif;                     /* ボタン内の文字の見た目 */
+  font-family: inherit;                     /* ボタン内の文字の見た目 */
   font-size: 1.125rem;                    /* ボタン内の文字サイズ */
   line-height: 2.5rem;                    /* ボタン内の文字高さ */
 
@@ -195,7 +197,7 @@ ul {
 }
 /* 子要素でボタン内に丸を表示 */
 .check::before {
-  content: '';                            /* 中身を空にする */
+  content: '';                            /* 疑似要素 */
 
   display: inline-flex;                   /* インライン&横並びにする */
 
@@ -241,11 +243,14 @@ ul {
   display: flex;                          /* flexで横並び */
   justify-content: center;                /* 横方向中央揃え */
   align-items: center;                    /* 縦方向中央揃え */
+
+  margin: 0;
+  padding: 0;
 }
 /* 地図表示ページのメインタグ */
 .map main {
   position: relative;                     /* 相対位置 */
-  content: '';                            /* 要素を空にする */
+  content: '';                            /* 疑似要素 */
 }
 /* 地図表示ページのチェックボックスが空の時 */
 .map input[type="checkbox"]:empty + label {
@@ -267,7 +272,52 @@ ul {
   --label-color: rgb(87, 8, 8);         /* チェック後ホバー時の巡回ボタン内の色 */
   --label-before-color: rgb(4, 87, 18); /* チェック後ホバー時の巡回ボタン内の丸の色 */
 }
+/* 地図上のポップアップの初期設定を無効化 */
+.request-popup .leaflet-popup-content-wrapper {
+  border-radius: 0px;
+  margin: 0;
+  padding: 0;
+}
+/* マーカーポップアップ */
+.marker-text {
+  width: auto;                            /* 文字数に応じて表示幅可変 */
+  height: auto;                           /* 文字数に応じて表示高さ可変 */
 
+  margin: 0;                              /* ポップアップ外の余白 */
+  padding: 0 auto;                        /* ポップアップ内の余白 */
+
+  font-size: 1rem;                        /* ポップアップ内の文字サイズ */
+  font-family: inherit;                   /* ポップアップ内の文字の見た目 */
+}
+/* 移動経路 */
+.road {
+  stroke-width: 5px;                      /* 線の表示幅 */
+  stroke: red;                          /* 線の色 */
+  stroke-linecap: butt;                   /* 線の先端の形 */
+  stroke-linejoin: butt;                  /* 線のコーナーの形 */
+  stroke-dasharray: 15 15;                /* 破線の間隔 (線の表示幅、穴の表示幅を交互に定義) */
+  fill: none;                             /* 線の間を埋めない */
+
+  overflow: visible;
+
+  /* animation: road-direction calc(var(--road-length)/10 * .1s) linear infinite; */
+  animation: road-direction 1s linear infinite;   /* アニメーション (5秒かけて実行、等速、無限ループ) */
+}
+.road-anime {
+  animation: road-direction 1s linear infinite;   /* アニメーション (5秒かけて実行、等速、無限ループ) */
+}
+/* 経路の動作アニメーション (線の先端をずらし、元の位置に戻るまでのアニメーション) */
+@keyframes road-direction {
+  0% {
+    stroke-dashoffset: 30px;
+  }
+  100% {
+    stroke-dashoffset:0px;
+  }
+}
+.stop {
+  animation-play-state: paused;
+}
 
 /*==================================== ページ別 ====================================*/
 .dest-map *, .dest-map *::before, .add-route *, .add-route *::before {
@@ -289,11 +339,20 @@ ul {
   font-size: var(--label-font);           /* ボタン内の文字サイズ */
   line-height: normal;                    /* ボタン内の文字高さ */
 }
-.exist-route .button, .car-watch .button, .path-check .button {
+.exist-route .button, .path-check .button .battery{
   width: auto;                            /* 文字数に応じて表示幅可変 */
   height: auto;                           /* 文字数に応じて表示高さ可変 */
-  
+
   margin: 0 2vw;                          /* ボタン外の余白 */
+
+  font-size: var(--btn-font, auto);       /* ボタン内の文字サイズ */
+  line-height: normal;                    /* ボタン内の文字高さ */
+}
+.car-watch .button {
+  width: auto;                            /* 文字数に応じて表示幅可変 */
+  height: auto;                           /* 文字数に応じて表示高さ可変 */
+
+  margin: 0 4vw 0 0;                      /* ボタン外の余白 */
 
   font-size: var(--btn-font, auto);       /* ボタン内の文字サイズ */
   line-height: normal;                    /* ボタン内の文字高さ */
@@ -301,6 +360,7 @@ ul {
 .add-route .button {
   width: auto;                            /* 文字数に応じて表示幅可変 */
   height: auto;                           /* 文字数に応じて表示高さ可変 */
+  max-height: var(--btn-font);
 
   margin: 0 0 0 1rem;                     /* ボタン外の余白 */
   padding: 0 0.6rem;                      /* ボタン内の余白 */
@@ -330,7 +390,7 @@ ul {
   background-color: white;              /* テキストフィールドの背景色 */
 
   font-size: calc(var(--label-font, auto) - 0.3rem);  /* テキストフィールド内の文字サイズ */
-  font-family: serif;                     /* テキストフィールド内の文字の見た目 */
+  font-family: inherit;                   /* テキストフィールド内の文字の見た目 */
   line-height: normal;                    /* テキストフィールド内の文字高さ */
   color: black;                         /* テキストフィールド内の文字色 */
 }
@@ -354,7 +414,7 @@ ul {
   padding: .1rem .2rem 0 0;               /* フォーム内の余白 */
 
   font-size: calc(var(--label-font, auto) - .1rem);  /* フォーム内の文字サイズ */
-  font-family: serif;                     /* フォーム内の文字の見た目 */
+  font-family: inherit;                    /* フォーム内の文字の見た目 */
   line-height: normal;                    /* フォーム内の文字高さ */
 }
 .car-menu main, .car-manage main, .end main {
@@ -441,7 +501,7 @@ ul {
   visibility: hidden;                     /* デフォルトで非表示 (不可視) */
 }
 .tooltip-text:before {
-  content: '';                            /* 要素を空にする */
+  content: '';                            /* 疑似要素 */
 
   position: absolute;                     /* 絶対位置 */
 	top: -13px;                             /* 配置位置 (上側) */
@@ -464,9 +524,75 @@ ul {
   font-size: 1rem;                        /* ツールチップ内の文字サイズ (車メニュー) */
 }
 
-/*==================================== お試しレスポンシブ ====================================*/
+.battery {
+  position: relative;
+
+  margin: 0 0 0 0;
+  padding: 0 20px;
+
+  border: 1px solid white;     /* 白い線を引く */
+  box-shadow: 0 0 0 2px black; /* 白い線の外側の黒い線を引く */
+  border-radius: 5px;           /* 軽く丸くする */
+}
+.battery::before {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: auto;
+  height: 21px;
+
+  margin: 0;
+  padding: 0 calc(40px - (var(--charge)*.4)) 0 0;
+  
+  background: var(--battery-color);
+  border-radius: 5px 3px 3px 5px;           /* 軽く丸くする */
+}
+.battery::after {
+  content: '';                  /* 疑似要素 */
+
+  position: absolute;           /* 相対位置に指定*/
+  top: 50%;                     /* 上から50%の位置に指定 */
+  right: -5px;                  /* 右に5pxはみ出させる */
+
+  width: 3px;                   /* 凸の表示幅 */
+  height: 8px;                  /* 凸の表示高さ */
+
+  border-radius: 0 8px 8px 0;   /* 角の丸み（右上、右下） */
+  background: black;           /* 背景色 */
+
+  transform: translateY(-50%);  /* 縦方向の中央に配置 */
+}
+.battery p {
+  content: '';
+
+  position: absolute;
+  top: 15%;
+  right: -18px;
+
+  width: 8px;
+  height: 8px;
+
+  margin: 0;
+  padding: 0;
+
+  text-align: end;
+
+  font-size: .8rem;
+  color: black;
+  text-shadow: -1px -1px 5px white, 0px -1px 5px white, 1px -1px 5px white,
+               -1px  0px 5px white,                       1px 0px 5px white,
+               -1px  1px 5px white, 0px  1px 5px white, 1px 1px 5px white;
+}
+
+/*==================================== メディアクエリ ====================================*/
 /* PC */
 @media screen {
+  .map {
+    --zoom-level: 18;
+  }
   .car-menu {
     --btn-font: 2rem;
     --btn-size: 30rem;
@@ -538,8 +664,9 @@ ul {
     --btn-font: 1.3rem;
   }
   .add-route {
+    --label-padding: .25rem .8rem .2rem 2.1rem;
     --label-font: 1.3rem;
-    --label-before-margin: .55rem .3rem 0 -1.5rem;
+    --label-before-margin: .6rem .3rem 0 -1.5rem;
     --form-size: 16rem;
   }
   .car-watch {
@@ -571,8 +698,9 @@ ul {
     --btn-font: 1rem;
   }
   .add-route {
-    --label-font: 1.2rem;
-    --label-before-margin: .55rem .3rem 0 -1.6rem;
+    --label-padding: .3rem .6rem .2rem 2rem;
+    --label-font: 1.3rem;
+    --label-before-margin: .4rem .3rem 0 -1.5rem;
     --form-size: 15rem;
   }
   .car-watch {
@@ -603,9 +731,9 @@ ul {
     --btn-font: 1rem;
   }
   .add-route {
-    --label-padding: .2rem .8rem .2rem 2.1rem;
+    --label-padding: .25rem .6rem .2rem 2.1rem;
     --label-font: 1.2rem;
-    --label-before-margin: .55rem .3rem 0 -1.6rem;
+    --label-before-margin: .5rem .3rem 0 -1.6rem;
     --form-size: 20rem;
   }
   .car-watch {
@@ -630,7 +758,10 @@ ul {
 /* タブレット (横長 小) */
 @media screen and (min-width: 768px) and (max-height: 600px) {
   .add-route {
+    --label-padding: .2rem .6rem .2rem 2.1rem;
     --label-font: .9rem;
+    --label-before-margin: .5rem .3rem 0 -1.7rem;
+    --form-size: 20rem;
   }
   .car-manage {
     --btn-font: 1.2rem;
@@ -639,8 +770,11 @@ ul {
     --h1-margin: 9rem 0 0 0;
   }
 }
-/* スマホ (大) */
+/* スマホ (極大) */
 @media screen and (max-width: 540px) {
+  .map {
+    --zoom-level: 17;
+  }
   .car-menu {
     --btn-font: 1.5rem;
     --btn-size: 15rem;
@@ -651,9 +785,9 @@ ul {
     --label-before-margin: .4rem .4rem 0 -1.3rem;
   }
   .add-route {
-    --label-padding: .1rem .2rem .1rem 2rem;
+    --label-padding: .15rem .2rem .11rem 2rem;
     --label-font: .8rem;
-    --label-before-margin: .5rem .2rem 0 -1.9rem;
+    --label-before-margin: .5rem .2rem 0 -1.75rem;
     --form-size: 5rem;
   }
   .car-watch {
@@ -677,7 +811,7 @@ ul {
     --btn-size: 10rem;
   }
 }
-/* スマホ (中) */
+/* スマホ (大) */
 @media screen and (max-width: 420px) {
   .dest-map {
     --label-padding: .35rem .6rem .25rem 1.8rem;
@@ -686,6 +820,8 @@ ul {
   }
   .add-route {
     --form-size: 4rem;
+    --label-padding: .15rem .2rem .1rem 2.1rem;
+    --label-before-margin: .5rem .2rem 0 -1.75rem;
   }
   .car-watch {
     --btn-font: 1.2rem;
@@ -694,7 +830,7 @@ ul {
     --btn-size: 18rem;
   }
 }
-/* スマホ (小) */
+/* スマホ (中) */
 @media screen and (max-width: 400px) {
   .car-menu {
     --btn-font: 1.2rem;
@@ -710,7 +846,7 @@ ul {
   }
   .add-route {
     --label-padding: .1rem .2rem .1rem 2.1rem;
-    --label-before-margin: .5rem .2rem 0 -2rem;
+    --label-before-margin: .5rem .2rem 0 -1.8rem;
   }
   .car-watch {
     --btn-font: 1rem;
@@ -726,11 +862,97 @@ ul {
     --btn-size: 8rem;
   }
 }
+/* スマホ (小) */
+@media screen and (max-width: 375px) {
+  .car-menu {
+    --btn-font: 1.2rem;
+    --btn-size: 16rem;
+  }
+  /* .dest-map {
+    --label-padding: .55rem .8rem .4rem 2.1rem;
+    --label-font: 1.5rem;
+    --label-before-margin: .55rem .52rem 0 -1.5rem;
+  }
+  .exist-route {
+    --btn-font: 1.6rem;
+  }
+  .add-route {
+    --label-padding: .55rem .8rem .4rem 2.1rem;
+    --label-font: 1.5rem;
+    --label-before-margin: .55rem .52rem 0 -1.5rem;
+    --form-size: 20rem;
+  }
+  .car-watch {
+    --btn-font: 1.6rem;
+  }
+  .car-manage {
+    --btn-font: 2rem;
+    --btn-size: 40rem;
+  }
+  .path-check {
+    --label-font: 1.6rem;
+    --btn-font: 1.6rem;
+    --form-size: 5rem;
+  }
+  .all-car {
+    --btn-font: 2rem;
+    --btn-size: 20vw;
+  }
+  .end {
+    --h1-margin: 20rem 0 0 0;
+    --h1-font: 2.5rem;
+    --btn-font: 2.5rem;
+    --btn-size: 20rem;
+  } */
+}
 /* スマホ (極小) */
+@media screen and (max-width: 360px) {
+  .car-menu {
+    --btn-font: 1.2rem;
+    --btn-size: 17rem;
+  }
+  /* .dest-map {
+    --label-padding: .55rem .8rem .4rem 2.1rem;
+    --label-font: 1.5rem;
+    --label-before-margin: .55rem .52rem 0 -1.5rem;
+  }
+  .exist-route {
+    --btn-font: 1.6rem;
+  }
+  .add-route {
+    --label-padding: .55rem .8rem .4rem 2.1rem;
+    --label-font: 1.5rem;
+    --label-before-margin: .55rem .52rem 0 -1.5rem;
+    --form-size: 20rem;
+  }
+  .car-watch {
+    --btn-font: 1.6rem;
+  }
+  .car-manage {
+    --btn-font: 2rem;
+    --btn-size: 40rem;
+  }
+  .path-check {
+    --label-font: 1.6rem;
+    --btn-font: 1.6rem;
+    --form-size: 5rem;
+  }
+  .all-car {
+    --btn-font: 2rem;
+    --btn-size: 20vw;
+  }
+  .end {
+    --h1-margin: 20rem 0 0 0;
+    --h1-font: 2.5rem;
+    --btn-font: 2.5rem;
+    --btn-size: 20rem;
+  } */
+}
+/* スマホ (超極小) */
 @media screen and (max-width: 320px) {
   .car-menu {
     --btn-font: 1rem;
-    --btn-size: 10rem;
+    --btn-size: 17rem;
   }
   .dest-map {
     --label-padding: .2rem .4rem .25rem 1.8rem;
@@ -741,7 +963,7 @@ ul {
     --btn-font: .6rem;
   }
   .add-route {
-    --label-padding: .1rem .1rem .1rem 2.3rem;
+    --label-padding: .15rem .1rem .1rem 2.3rem;
     --label-font: .7rem;
     --label-before-margin: .2rem .1rem 0 -2.1rem;
     --form-size: 1.2rem;

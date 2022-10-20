@@ -19,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </LoadingContext.Provider>
     </>
   )
-};
 
-export default MyApp;
+}
+
+export default MyApp

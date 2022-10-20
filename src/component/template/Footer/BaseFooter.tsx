@@ -3,9 +3,9 @@ import React from 'react';
 export const BaseFooter = () => {
     return (
         <footer>
-            <div>
+            <h1>
                 © 2022 Kohga. All Rights Reserved.
-            </div>
+            </h1>
         </footer>
     )
 }
