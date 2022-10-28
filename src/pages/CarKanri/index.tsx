@@ -7,40 +7,37 @@ import { OnClickSetState } from "../../component/onClickSetState/onClickSetState
 import { BaseFooter } from "../../component/template/Footer/BaseFooter";
 import { BaseHeader } from "../../component/template/Header/BaseHeader";
 
-
-const DynamicMap = dynamic(() => {
-    return import('../../component/map/BaseCircleMap')
-},
-    { ssr: false }
-)
+const DynamicMap = dynamic(
+	() => {
+		return import("../../component/map/BaseCircleMap");
+	},
+	{ ssr: false }
+);
 
 const CarKanri = () => {
-    const { page, setPage } = useContext(PageStateContext);
-    return (
-        <>
-            <div className="container car-manage">
-                <BaseHeader>
-                    <h1>
-                        <span>Car Manage</span>
-                    </h1>
-                </BaseHeader>
-                <main>
+	const { page, setPage } = useContext(PageStateContext);
+	return (
+		<>
+			<BaseHeader>
+				<h1>Car Manage</h1>
+			</BaseHeader>
 
-                    <BaseButton onClick={() => OnClickSetState(0, setPage)} _className="button">
-                        TOPへ
-                    </BaseButton>
-                    <BaseButton onClick={() => OnClickSetState(8, setPage)} _className="button">
-                        通行可能領域設定
-                    </BaseButton>
-                    <BaseButton onClick={() => OnClickSetState(9, setPage)} _className="button">
-                        車一覧
-                    </BaseButton>
+			<div className="manage-page">
+				<BaseButton onClick={() => OnClickSetState(0, setPage)} _className="manage-button button">
+					TOPへ
+				</BaseButton>
+                
+				<BaseButton onClick={() => OnClickSetState(8, setPage)} _className="manage-button button">
+					通行可能領域設定
+				</BaseButton>
 
-                </main>
+				<BaseButton onClick={() => OnClickSetState(9, setPage)} _className="manage-button button">
+					車一覧
+				</BaseButton>
+			</div>
 
-                <BaseFooter />
-            </div>
-        </>
-    )
-}
+			<BaseFooter />
+		</>
+	);
+};
 export default CarKanri;

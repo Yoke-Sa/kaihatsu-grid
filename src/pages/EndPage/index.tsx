@@ -6,30 +6,27 @@ import { BaseFooter } from "../../component/template/Footer/BaseFooter";
 import { BaseHeader } from "../../component/template/Header/BaseHeader";
 
 const EndPage = () => {
-    const { setPage } = useContext(PageStateContext);
-    return (
-        <>
-            <div className="container end">
-                <BaseHeader>
-                    <h1>
-                        <span>
-                            Thank you for coming
-                        </span>
-                    </h1>
-                </BaseHeader>
-                <main>
-                    <h1>ご利用ありがとうございました<br></br>またのご利用をお待ちしております</h1>
+	const { setPage } = useContext(PageStateContext);
+	return (
+		<>
+			<BaseHeader>
+				<h1>終了</h1>
+			</BaseHeader>
 
+			<div className="end-page">
+				<h2>
+					ご利用ありがとうございました。<br></br>またのご利用をお待ちしております。
+				</h2>
 
-                    <div>
-                        <BaseButton onClick={() => OnClickSetState(0, setPage)} _className="button">
-                            TOPへ
-                        </BaseButton>
-                    </div>
-                </main>
-                <BaseFooter />
-            </div>
-        </>
-    )
-}
-export default EndPage
+				<span className="bg-img" />
+
+				<BaseButton onClick={() => OnClickSetState(0, setPage)} _className="end-button button">
+					TOPへ
+				</BaseButton>
+			</div>
+
+			<BaseFooter />
+		</>
+	);
+};
+export default EndPage;

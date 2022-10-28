@@ -1,0 +1,38 @@
+@media screen {
+	.end-page {
+		@include flex-center();
+		flex-direction: column;
+
+		h2 {
+			margin-top: 30vh;
+			font-size: x-large;
+			text-shadow: -1px -1px 10px white, 0 -1px 10px white, 1px -1px 10px white,
+						 -1px 0 10px white, 0 0 10px white, 1px 0 10px white,
+						 -1px 1px 10px white, 0 1px 10px white, 1px 1px 10px white;
+		}
+
+		.end-button {
+			margin-top: 5vh;
+			padding: 2px 15px;
+			font-size: 20px;
+		}
+
+		.bg-img {
+			position: fixed;
+			inset: 0;
+			width: 100vw;
+			height: 100vh;
+			background-image: url("../assets/images/free7.webp");
+			background-size: cover;
+		
+			z-index: -1;
+		}
+	}
+}
+@media screen and (max-width: 540px) {
+	.end-page {
+		h2 {
+			font-size: medium;
+		}
+	}
+}

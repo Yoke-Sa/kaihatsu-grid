@@ -14,10 +14,9 @@ const nativeZoomlevel = 18;
 
 const element: any = document.querySelector(".map");
 const style = getComputedStyle(element);
-const zoomlevel = Number(style.getPropertyValue('--zoom-level'));
+const zoomlevel = Number(style.getPropertyValue("--zoom-level"));
 
 const ClickMarker = () => {
-
     const { point, setPoint } = useContext(LocationPointContext);
     useMapEvents({
         click(e) {
@@ -29,30 +28,34 @@ const ClickMarker = () => {
 
     })
     return (
-        <React.Fragment>
-            {point.map((pos, index) => <Marker
-                position={pos}
-                key={index}
-                riseOnHover={true}>
-                    <Popup className="marker-text" autoClose={false} closeOnClick={false}>{index+1}番目</Popup>
-                </Marker>)}
-        </React.Fragment>
+        <>
+            <React.Fragment>
+                {point.map((pos, index) => <Marker
+                    position={pos}
+                    key={index}
+                    riseOnHover={true}>
+                        <Popup className="marker-text" autoClose={false} closeOnClick={false}>{index+1}番目</Popup>
+                    </Marker>)}
+            </React.Fragment>
+        </>
     )
 }
 
 const BaseMap = () => {
 
     return (
-        <MapContainer center={position} zoom={zoomlevel} scrollWheelZoom={false} doubleClickZoom={false}>
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                minZoom={17}
-				maxNativeZoom={nativeZoomlevel}
-				maxZoom={21}
-            />
-            <ClickMarker />
-        </MapContainer>
+        <>
+            <MapContainer center={position} zoom={zoomlevel} scrollWheelZoom={false} doubleClickZoom={false} touchZoom={false}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    minZoom={17}
+                    maxNativeZoom={nativeZoomlevel}
+                    maxZoom={21}
+                />
+                <ClickMarker />
+            </MapContainer>
+        </>
     )
 }
 export default BaseMap;

@@ -30,7 +30,7 @@ const LinePoly = () => {
 	return (
 		<React.Fragment>
 			{point.map((p, index) => (
-				<Polyline positions={point} key={index} className={"road"}/>
+				<Polyline positions={point} key={index} className={"road"} />
 			))}
 		</React.Fragment>
 	);
@@ -38,14 +38,15 @@ const LinePoly = () => {
 
 const ClickMarker = () => {
 	const { point, setPoint, setPoly } = useContext(LocationPointContext);
-	useMapEvents({
-		click(e) {
-			setPoint((prevValue) => {
-				const newValue = [...prevValue, e.latlng];
-				return newValue;
-			});
-		},
-	});
+	// useMapEvents({
+	// 	click(e) {
+	// 		setPoint((prevValue) => {
+	// 			const newValue = [...prevValue, e.latlng];
+	// 			// document.querySelector(".road")?.classList.remove("road-hidden");
+	// 			return newValue;
+	// 		});
+	// 	},
+	// });
 	return (
 		<React.Fragment>
 			{point.map((pos, index) => (
@@ -59,6 +60,8 @@ const ClickMarker = () => {
 								let index = point.indexOf(e.latlng);
 								point.splice(index, 1);
 								setPoly([[]]);
+								// setPoint(point);
+								// document.querySelector(".road")?.classList.add("road-hidden");
 							}
 						},
 					}}
@@ -74,7 +77,7 @@ const ClickMarker = () => {
 
 const RouteMap = () => {
 	return (
-		<MapContainer center={position} zoom={zoomlevel} scrollWheelZoom={false} doubleClickZoom={false}>
+		<MapContainer center={position} zoom={zoomlevel} scrollWheelZoom={false} doubleClickZoom={false} touchZoom={false}>
 			<TileLayer
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

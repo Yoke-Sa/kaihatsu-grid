@@ -1,0 +1,32 @@
+@media screen {
+    .path-button {
+        font-size: 20px;
+    }
+
+    .radius-area {
+		width: 8em;
+		margin: 0 2em;
+	}
+}
+@media screen and (max-width:540px) {
+    .path-button {
+        padding: 0.3em 0.7em;
+        font-size: 16px;
+    }
+
+    .radius-area {
+        width: 6em;
+        margin: 0 1em;
+    }
+}
+@media screen and (max-width:320px) {
+    .path-button {
+        padding: 0.3em 0.5em;
+        font-size: 16px;
+    }
+
+    .radius-area {
+        width: 4em;
+        margin: 0 1em;
+    }
+}

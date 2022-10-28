@@ -12,8 +12,8 @@ export const PageLoading: React.FC<Props> = ({
         <>
             {isShow &&
                 <div className="loader">
-                    <Grid />
-                    <div className="nowlocadsing">
+                    <Grid color={"gray"}/>
+                    <div className="nowloading">
                         Now Loading...
                     </div>
                 </div>

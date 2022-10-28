@@ -1,5 +1,6 @@
 import { LatLng } from 'leaflet';
 import type { NextPage } from 'next'
+import Head from 'next/head';
 import { type } from 'os';
 import React, { createContext, useEffect, useState } from 'react';
 import { Urltonumber } from '../component/onClickSetState/onClickSetState';
@@ -47,6 +48,10 @@ const Home: NextPage = () => {
   useEffect(() => window.addEventListener('popstate', () => setPage(Urltonumber(window.location.pathname))), [])
   return (
     <>
+    {/* <Head>
+      <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css" />
+    </Head> */}
       <LocationPointContext.Provider value={{ point, setPoint, poly, setPoly }}>
         <PageStateContext.Provider value={{ page, setPage }}>
           <CircleContext.Provider value={{ circle, setCircle, radius, setRadius }}>

@@ -1,0 +1,401 @@
+// flexで中央揃えさせる
+@mixin flex-center {
+	display: flex;
+	justify-content: center; // 主軸方向
+	align-items: center; // 交差軸方向
+}
+
+// ルート要素の共通設定
+:root {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", "Yu Gothic", "Meryo",
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	user-select: none; // 文字のドラッグ選択をさせない
+	scrollbar-width: none; // Firefox スクロールバー非表示
+	-ms-overflow-style: none; //IE, Edge スクロールバー非表示
+}
+// Chrome スクロールバー非表示
+*::-webkit-scrollbar {
+	display: none;
+}
+
+// ボディの共通設定
+body {
+	content: "";
+	margin: 0;
+	padding: 0;
+	min-height: 100vh; // 最低でも画面いっぱいに表示
+	overflow: hidden scroll; // 縦方向のみスクロールできる
+}
+
+// ヘッダーの共通設定
+header {
+	@include flex-center();
+
+	position: sticky; // ページ上の位置固定
+	inset: 0;
+	width: 100vw;
+	height: 8vh;
+	z-index: 1000;
+
+	background: rgb(247, 247, 247);
+	border-bottom: solid 1px rgb(201, 201, 201);
+	box-shadow: 0 1px 20px black;
+
+	// ヘッダーの見出し
+	h1 {
+		font-size: normal;
+	}
+}
+
+// ボタンの共通設定
+.button {
+	text-align: center;
+
+	background: rgb(199, 199, 199);
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+	box-shadow: 0 0 5px black;
+
+	&:hover {
+		background: rgb(134, 134, 134);
+	}
+}
+
+// フッターの共通設定
+footer {
+	position: fixed;
+	text-align: end;
+	bottom: 0;
+	width: 100vw;
+	height: auto;
+	max-height: 3vh;
+	font-size: small;
+}
+
+// チェックボックスの共通設定
+input[type="checkbox"] {
+	display: none; /* チェックボックスを非表示 */
+
+	&:empty {
+		+ label {
+			--label-before-color: rgb(141, 141, 141);
+			--label-color: rgb(194, 194, 194);
+		}
+		+ label:hover {
+			--label-before-color: rgb(112, 112, 112);
+			--label-color: rgb(155, 155, 155);
+		}
+	}
+	&:checked {
+		+ label {
+			--label-before-color: rgb(9, 175, 36);
+		}
+		+ label:hover {
+			--label-before-color: rgb(4, 87, 18);
+		}
+	}
+}
+
+// リーフレットの地図コンテナ
+.leaflet-container {
+	position: relative;
+	inset: -1px 0 0 0;
+	width: inherit;
+	height: 90vh;
+	cursor: var(--map-cursor, auto) !important;
+	z-index: 999;
+
+	&:active {
+		--map-cursor: grabbing;
+	}
+}
+
+// 地図の共通設定
+.map {
+	position: relative;
+	content: "";
+	--zoom-level: 18;
+}
+
+// 読み込み画面
+.loader {
+	position: absolute;
+	inset: 0;
+	@include flex-center();
+	flex-direction: column;
+	background: rgba(255, 255, 255, 0.342);
+	z-index: 9999;
+}
+
+// 読み込み画面の文字
+.nowloading {
+	margin-top: 4rem;
+	color: black;
+	font-size: 2rem;
+	line-height: 1.5rem;
+}
+
+// 経路表示設定
+.road {
+	stroke-width: 5px;
+	stroke: red;
+	stroke-linecap: butt;
+	stroke-linejoin: butt;
+	stroke-dasharray: 15 15;
+	fill: none;
+	overflow: visible;
+	animation: road-direction 2s linear infinite;
+}
+
+// 経路のアニメーション
+@keyframes road-direction {
+	0% {
+		stroke-dashoffset: 30px;
+	}
+	100% {
+		stroke-dashoffset: 0px;
+	}
+}
+
+// モーダル
+.modalContainer {
+	@include flex-center();
+	position: absolute;
+	inset: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 9999;
+
+	background-color: rgba(128, 128, 128, 0.5);
+	cursor: pointer;
+
+	.modalBody {
+		display: grid;
+		grid-template-areas:
+			"page	"
+			"footer	";
+		padding: 1rem;
+		width: 60%;
+		max-height: 60%;
+		text-align: right;
+
+		background-color: white;
+		border-radius: 1rem;
+		filter: drop-shadow(0 0 0.75rem gray);
+		cursor: default;
+
+		.modal-page {
+			grid-area: page;
+			display: grid;
+			grid-template-areas:
+				// "title	img"
+				// "txt	img";
+
+				"title"
+				"txt";
+
+			h2 {
+				grid-area: title;
+				text-align: center;
+			}
+
+			p {
+				grid-area: txt;
+				text-align: start;
+			}
+
+			// .modal-img {
+			// 	grid-area: img;
+			// 	width: 20vw;
+			// 	height: 20vh;
+			// 	background-image: var(--img-file, url("../assets/images/test.png"));
+			// 	background-size: cover;
+			// 	scale: 90%;
+			// }
+
+			// #page1 {
+			// 	--img-file: url("../assets/images/modal_bg.png");
+			// }
+			// #page2 {
+			// 	// --img-file: url("../assets/images/modal.png");
+			// }
+			// #page3 {
+
+			// }
+		}
+
+		.modal-footer {
+			grid-area: footer;
+			justify-content: center;
+			margin-top: 1vh;
+
+			.modal-button {
+				@extend .button;
+				margin-bottom: 10px;
+				margin-right: 2vw;
+			}
+		}
+	}
+}
+
+@media screen {
+	#short-cut {
+		+ label {
+			cursor: pointer;
+			display: inline-block;
+			position: absolute;
+			left: 3rem;
+			padding-left: 25px;
+			font-size: 14px;
+		}
+
+		+ label::before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 58%;
+			left: 6px;
+			width: 16px;
+			height: 16px;
+			margin-top: -10px;
+
+			border: 1px solid;
+			border-radius: 3px;
+			box-sizing: border-box;
+			border-color: #585753;
+			background-color: #fff;
+		}
+
+		&:checked + label::after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 63%;
+			left: 9px;
+			width: 16px;
+			height: 8px;
+			margin-top: -9px;
+			margin-left: -3px;
+
+			border-bottom: 3px solid;
+			border-left: 3px solid;
+			box-sizing: border-box;
+			border-color: #585753;
+			transform: rotate(-45deg);
+		}
+	}
+
+	.modal-button {
+		padding: 0.3em 1em;
+		font-size: 14px;
+	}
+}
+@media screen and (max-width: 960px) {
+	.button {
+		&:hover {
+			background:  rgb(199, 199, 199);
+		}
+	}
+}
+// スマホのデフォルト設定
+@media screen and (max-width: 540px) {
+	.map {
+		--zoom-level: 17;
+	}
+
+	.modal-page {
+		h2 {
+			width: 60vw;
+		}
+		p {
+			width: 60vw;
+			font-size: 16px;
+		}
+	}
+
+	.modal-button {
+		margin-top: 25px;
+		font-size: 10px;
+	}
+
+	#short-cut {
+		+ label {
+			left: 2.2rem;
+			padding: 0;
+			font-size: 12px;
+		}
+
+		+ label::before {
+			top: 80%;
+			left: -12px;
+			width: 10px;
+			height: 10px;
+		}
+
+		&:checked + label::after {
+			top: 80%;
+			left: 3px;
+			width: 10px;
+			height: 5px;
+			margin-top: -9px;
+			margin-left: -14px;
+
+			border-bottom: 2px solid;
+			border-left: 2px solid;
+		}
+	}
+}
+@media screen and (max-width: 375px) {
+	.modal-page {
+		h2 {
+			font-size: 20px;
+		}
+		p {
+			font-size: 14px;
+		}
+	}
+
+	.modal-button {
+		margin-top: 24px;
+		font-size: 10px;
+	}
+
+	#short-cut {
+		+ label {
+			left: 2rem;
+			padding: 0;
+			font-size: 11px;
+		}
+
+		+ label::before {
+			top: 80%;
+			left: -12px;
+			width: 10px;
+			height: 10px;
+		}
+
+		&:checked + label::after {
+			top: 80%;
+			left: 3px;
+			width: 10px;
+			height: 5px;
+			margin-top: -9px;
+			margin-left: -14px;
+
+			border-bottom: 2px solid;
+			border-left: 2px solid;
+		}
+	}
+}
+@media screen and (max-width: 359px) {
+	.modal-page {
+		h2 {
+			font-size: 16px;
+		}
+		p {
+			font-size: 12px;
+		}
+	}
+}

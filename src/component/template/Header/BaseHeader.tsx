@@ -10,10 +10,10 @@ export const BaseHeader: React.FC<Props> = ({
     children,
 }) => {
     return (
-        <header>
-            <div>
+        <>
+            <header>
                 {children}
-            </div>
-        </header>
+            </header>
+        </>
     )
 }
