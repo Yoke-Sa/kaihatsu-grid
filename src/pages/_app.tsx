@@ -1,7 +1,8 @@
 import "../styles/import.scss";
 import type { AppProps } from "next/app";
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { PageLoading } from "../component/hooks/pageLoading";
+import { useShowAlert } from "../component/hooks/showAlert";
 
 export const LoadingContext = createContext(
 	{} as {
@@ -23,17 +24,26 @@ export const ChangeShortCut = createContext(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const [ pageLoading, setPageLoading ] = useState<boolean>(false);
-	const [ firstPage, setFirstPage ] = useState<boolean>(false);
-	const [ secondPage, setSecondPage ] = useState<boolean>(false);
-	const [ thirdPage, setThirdPage ] = useState<boolean>(false);
+	const [pageLoading, setPageLoading] = useState<boolean>(false);
+	const [firstPage, setFirstPage] = useState<boolean>(false);
+	const [secondPage, setSecondPage] = useState<boolean>(false);
+	const [thirdPage, setThirdPage] = useState<boolean>(false);
+
+	useShowAlert();
 
 	return (
 		<>
 			<PageLoading isShow={pageLoading} />
 			<LoadingContext.Provider value={{ pageLoading, setPageLoading }}>
 				<ChangeShortCut.Provider
-					value={{ firstPage, setFirstPage, secondPage, setSecondPage, thirdPage, setThirdPage }}
+					value={{
+						firstPage,
+						setFirstPage,
+						secondPage,
+						setSecondPage,
+						thirdPage,
+						setThirdPage,
+					}}
 				>
 					<Component {...pageProps} />
 				</ChangeShortCut.Provider>

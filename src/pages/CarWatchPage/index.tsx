@@ -1,5 +1,4 @@
 import axios from "axios";
-import Link from "next/link";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { LocationPointContext, PageStateContext, UserIdContext } from "..";
 import { BaseButton } from "../../component/atoms/button/BaseButton";
@@ -77,24 +76,23 @@ const CarWatchPage = () => {
 	// バッテリー残量の可視化
 	const showBattery = (rem: number) => {
 		const charge = Math.max(0, Math.min(100, rem)); // 0~100%まで
-
-		document.documentElement.style.setProperty(
-			"--battery-color",
-			"rgb(8, 175, 8)"
-		); // バッテリーの色(緑)
-
-		if (charge <= 20) {
+		() => {
 			document.documentElement.style.setProperty(
 				"--battery-color",
-				"rgb(255, 68, 68)"
-			); // 20%以下の時は赤色にする
-		}
+				"rgb(8, 175, 8)"
+			); // バッテリーの色(緑)
 
-		document.documentElement.style.setProperty(
-			"--charge",
-			String(100 - charge)
-		); // パーセンテージ表示
-
+			if (charge <= 20) {
+				document.documentElement.style.setProperty(
+					"--battery-color",
+					"rgb(255, 68, 68)"
+				); // 20%以下の時は赤色にする
+			}
+			document.documentElement.style.setProperty(
+				"--charge",
+				String(100 - charge)
+			); // パーセンテージ表示
+		};
 		return charge;
 	};
 

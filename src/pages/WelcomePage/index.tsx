@@ -1,6 +1,6 @@
 import axios from "axios";
 import Script from "next/script";
-import React, { useCallback, useContext } from "react";
+import React, { useRef, useCallback, useContext, useEffect } from "react";
 import { PageStateContext, UserIdContext } from "..";
 import { BaseButton } from "../../component/atoms/button/BaseButton";
 import { OnClickSetState } from "../../component/onClickSetState/onClickSetState";
@@ -31,15 +31,34 @@ const WelcomePage = () => {
 		//     .catch((e) => console.log(e))
 	};
 
+	const removePoster = () => {
+		const mv = document.querySelector(".video");
+		mv?.classList.remove("bg-img");
+	};
+
 	return (
 		<>
 			<div className="top-page">
-				{/* <video playsInline autoPlay muted loop preload="metadata">
-					<source src="../../assets/movies/backmovie.mp4" type="video/mp4"></source>
+				{/* <video playsInline autoPlay muted loop preload="metadata" ref={videoRef}>
+					<source src={mv} type={"video/mp4"} />
 					<p>動画の再生に対応していません</p>
 				</video> */}
 
-				<span className="free-img" />
+				{/* <span className="free-img" /> */}
+
+				<video
+					autoPlay
+					muted
+					loop
+					playsInline
+					preload="metadata"
+					className="video bg-img"
+					onCanPlay={removePoster}
+				>
+					<source src="/movies/backmovie.webm" type="video/webm"></source>
+					<source src="/movies/backmovie.mp4" type="video/mp4"></source>
+					<p>動画の再生に対応していません</p>
+				</video>
 
 				<h1 className="top-title">Kohga</h1>
 
@@ -47,7 +66,9 @@ const WelcomePage = () => {
 					車を使う
 				</BaseButton>
 
-				<p onClick={() => OnClickSetState(7, setPage)} className="go-manage">管理画面</p>
+				<p onClick={() => OnClickSetState(7, setPage)} className="go-manage">
+					管理画面
+				</p>
 			</div>
 		</>
 	);

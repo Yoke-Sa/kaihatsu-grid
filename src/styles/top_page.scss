@@ -1,11 +1,17 @@
-video {
-	position: absolute;
+.video {
+	position: inherit;
 	inset: 0;
-	width: auto;
-	height: auto;
 	min-width: 100%;
 	min-height: 100%;
-	z-index: -1;
+	width: auto;
+	height: auto;
+	z-index: -10;
+}
+
+.bg-img {
+	background-image: url("../assets/images/free3.jpg");
+	background-size: cover;
+	z-index: -100;
 }
 
 .top-page {
@@ -18,23 +24,26 @@ video {
 	user-select: none;
 
 	.top-title {
+		position: relative;
 		margin-top: -5vh;
 		padding: 0 auto;
 		font-size: 3rem;
 		color: white;
 		text-shadow: -1px 1px 20px black, 0 1px 20px black, 1px 1px 20px black,
 					 -1px 0 20px black, 1px 0 20px black,
-					 -1px -1px 20px black, 0 -1px 20px black, 1px 0 20px black;	
+					 -1px -1px 20px black, 0 -1px 20px black, 1px 0 20px black;
+		z-index: 2;
 	}
 
 	.top-button {
+		position: relative;
 		width: 40vw;
 		height: 5vh;
 		font-size: 1.5rem;
 		border-radius: 5px;
 		cursor: pointer;
 		box-shadow: 0 0 10px black;
-
+		z-index: 2;
 		// &:hover {
 		// 	background: rgb(209, 209, 209);
 		// }
@@ -49,6 +58,7 @@ video {
 		color: gray;
 		cursor: pointer;
 		text-decoration: solid underline 1px gray;
+		z-index: 2;
 	}
 }
 
@@ -59,5 +69,5 @@ video {
 	background-image: url("../assets/images/free3.jpg");
 	background-size: cover;
 
-	z-index: -1;
+	z-index: -101;
 }

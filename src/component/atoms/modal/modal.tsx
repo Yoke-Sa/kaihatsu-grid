@@ -120,11 +120,20 @@ export const Modal: React.FC<Props> = ({
 		}
 	};
 
+	// css用にクラス名を付与する
+	const getClassName = () => {
+		let className = "";
+		for(let i=0; i<modalName.length; i++){
+			modalName === modalPages[i]
+		}
+		return className;
+	}
+
 	return (
 		<>
-			<div className="modalContainer">
+			<div className="modal-container" onClick={closeHandler}>
 				<div
-					className="modalBody"
+					className="modal-body"
 					onClick={(event) => {
 						event.stopPropagation();
 					}}
@@ -135,15 +144,7 @@ export const Modal: React.FC<Props> = ({
 						<input
 							type="checkbox"
 							id="short-cut"
-							className={
-								modalName === modalPages[0]
-									? modalPages[0]
-									: modalName === modalPages[1]
-									? modalPages[1]
-									: modalName === modalPages[2]
-									? modalPages[2]
-									: ""
-							}
+							className={getClassName()}
 							onChange={onChangeShortCut}
 							checked={isChecked}
 						/>

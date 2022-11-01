@@ -4,7 +4,7 @@ import { LatLng, point } from "leaflet";
 import "leaflet/dist/leaflet.css"
 import { CircleContext, LatLngRadius, LocationPointContext } from "../../pages";
 //Marker壊れたとき用
-import L from "leaflet"
+import L from "leaflet";
 L.Icon.Default.imagePath = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/'
 
 
@@ -19,13 +19,13 @@ const hoge: LatLngRadius[] = [];
 const CircleMarker = () => {
     const { circle, setCircle, radius, setRadius } = useContext(CircleContext);
     const { setPoly } = useContext(LocationPointContext);
-
+    
     useMapEvents({
         click(e) {
             setCircle((prevValue) => {
-                const newValue = [...prevValue, { pos: e.latlng, r: radius }]
-                console.log('newValue', newValue)
-                return newValue
+                const newValue = [...prevValue, { pos: e.latlng, r: radius }];
+                console.log('newValue', newValue);
+                return newValue;
             })
 
         }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet"
 import { LatLng } from "leaflet";
 import "leaflet/dist/leaflet.css"
@@ -18,6 +18,7 @@ const zoomlevel = Number(style.getPropertyValue("--zoom-level"));
 
 const ClickMarker = () => {
     const { point, setPoint } = useContext(LocationPointContext);
+
     useMapEvents({
         click(e) {
             setPoint((prevValue) => {
@@ -25,7 +26,6 @@ const ClickMarker = () => {
                 return newValue
             });
         },
-
     })
     return (
         <>
@@ -42,7 +42,6 @@ const ClickMarker = () => {
 }
 
 const BaseMap = () => {
-
     return (
         <>
             <MapContainer center={position} zoom={zoomlevel} scrollWheelZoom={false} doubleClickZoom={false} touchZoom={false}>
